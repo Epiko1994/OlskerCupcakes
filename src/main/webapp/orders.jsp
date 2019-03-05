@@ -1,8 +1,16 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: bueko
+  Date: 05/03/2019
+  Time: 11:43
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-    <title>Olsker Cupcake Webshop</title>
+    <meta charset="UTF-8">
+    <title>Orders</title>
     <link href="css/cupcake.css" rel="stylesheet" type="text/css">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
@@ -28,9 +36,9 @@
         <a class="navbar-brand" href="#">
             <img src="img/cupcake.svg" width="30" height="30" class="d-inline-block align-top" alt="logo">
         </a>
-        <a class="active" href="index.jsp">Shop</a>
+        <a href="index.jsp">Shop</a>
         <a href="customers.jsp">Kunder</a>
-        <a href="orders.jsp">Ordrer</a>
+        <a class="active" href="orders.jsp">Ordrer</a>
 
         <!-- Login popup -->
         <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
@@ -80,55 +88,8 @@
 
     </div>
 
-    <div class="shopSelection">
-        <h1>Velkommen ombord</h1>
-        <h4>Øens bedste cupcakes. Vælg og bestil her:</h4>
+    <h3>List of orders</h3>
 
-        <div id="cupcakeselectionbox" class="row">
-
-            <div class="col-sm-3 dropdown_box">
-                <select name="bottom" class="form-control">
-                    <option selected disabled>Vælg bund</option>
-                    <option value="1">Chocolate</option>
-                    <option value="2">Vanilla</option>
-                    <option value="3">Nutmeg</option>
-                    <option value="4">Pistacio</option>
-                </select>
-            </div>
-
-            <div class="col-sm-3 dropdown_box">
-                <select name="top" class="form-control">
-                    <option selected disabled>Vælg top</option>
-                    <option value="1">Chocolate</option>
-                    <option value="2">Blueberry</option>
-                    <option value="3">Rasberry</option>
-                </select>
-            </div>
-
-            <div class="col-sm-3 dropdown_box">
-                <select name="number" class="form-control">
-                    <option selected disabled>Vælg antal</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                </select>
-            </div>
-
-            <div class="col-sm-3 dropdown_box">
-                <input type="submit" name="selectcupcake" value="Læg i kurv" class="btn btn-success form-control"/>
-            </div>
-
-        </div>
-
-    </div>
 </div>
-
 </body>
 </html>
