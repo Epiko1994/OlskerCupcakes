@@ -73,7 +73,7 @@
         </script>
 
 
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="shoppingBasket.jsp">
             <img src="img/shopping-basket.svg" width="30" height="30" class="d-inline-block align-top"
                  alt="logo">
         </a>

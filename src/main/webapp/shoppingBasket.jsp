@@ -1,16 +1,14 @@
 <%--
   Created by IntelliJ IDEA.
-  User: bueko
-  Date: 05/03/2019
-  Time: 11:43
+  User: Emil
+  Date: 05-03-2019
+  Time: 11:55
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Ordrer</title>
+    <title>Indkøbskurv</title>
     <link href="css/cupcake.css" rel="stylesheet" type="text/css">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
@@ -36,9 +34,9 @@
         <a class="navbar-brand" href="#">
             <img src="img/cupcake.svg" width="30" height="30" class="d-inline-block align-top" alt="logo">
         </a>
-        <a href="index.jsp">Shop</a>
+        <a class="active" href="index.jsp">Shop</a>
         <a href="customers.jsp">Kunder</a>
-        <a class="active" href="orders.jsp">Ordrer</a>
+        <a href="orders.jsp">Ordrer</a>
 
         <!-- Login popup -->
         <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
@@ -82,14 +80,10 @@
 
 
         <a class="nav-link" href="shoppingBasket.jsp">
-            <img href="shoppingBasket.jsp" src="img/shopping-basket.svg" width="30" height="30" class="d-inline-block align-top"
+            <img src="img/shopping-basket.svg" width="30" height="30" class="d-inline-block align-top"
                  alt="logo">
         </a>
 
     </div>
-
-    <h3>List of orders</h3>
-
-</div>
 </body>
 </html>
