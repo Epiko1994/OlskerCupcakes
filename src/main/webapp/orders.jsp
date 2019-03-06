@@ -1,7 +1,8 @@
 <%@ page import="model.Cupcake" %>
 <%@ page import="model.User" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="model.Order" %><%--
+<%@ page import="model.Order" %>
+<%--
   Created by IntelliJ IDEA.
   User: bueko
   Date: 05/03/2019
@@ -107,6 +108,7 @@
                         "    <td>_userid_</td> \n" +
                         "    <td>_date_</td> \n" +
                         "    <td>_balance_</td>\n" +
+                        "    <td> <a href=\"OrderPageController\">Ordre</a>" +
                         "  </tr>";
                 template = template.replace("_orderid_",Integer.toString(order.getOrderID()));
                 template = template.replace("_userid_", user.getEmail());
