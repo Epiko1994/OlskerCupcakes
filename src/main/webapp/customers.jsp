@@ -1,5 +1,5 @@
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="model.User" %><%--
+<%@ page import="model.User" %>
+<%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
   User: bueko
   Date: 05/03/2019
@@ -90,18 +90,33 @@
     </div>
 
     <h3>List of customers</h3>
-<%
-    ArrayList<User> users = (ArrayList<User>) request.getAttribute("users");
-    StringBuilder stringBuilder = new StringBuilder();
+    <%
+        ArrayList<User> users = (ArrayList<User>) request.getAttribute("users");
+        StringBuilder stringBuilder = new StringBuilder();
 
-    for (User user :
-            users) {
-        stringBuilder.append(user.getEmail());
-    }
-%>
-
-    <p> <%=stringBuilder.toString()%></p>
-
+        for (User user :
+                users) {
+            String template = "<tr>\n" +
+                    "    <td>_email_</td>\n" +
+                    "    <td>_userid_</td> \n" +
+                    "    <td>_balance_</td>\n" +
+                    "  </tr>";
+            template = template.replace("_email_", user.getEmail());
+            template = template.replace("_userid_", Integer.toString(user.getUserID()));
+            template = template.replace("_balance_", Integer.toString(user.getSaldo()));
+            stringBuilder.append(template);
+        }
+    %>
+    <div class="container-fluid">
+        <table class="table">
+            <tr>
+                <th>E-mail</th>
+                <th>Kunde-ID</th>
+                <th>Saldo</th>
+            </tr>
+            <%=stringBuilder.toString()%>
+        </table>
+    </div>
 </div>
 </body>
 </html>
