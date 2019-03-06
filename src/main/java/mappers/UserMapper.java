@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class UserMapper {
 
-    public static ArrayList<User> customerReader() throws SQLException, ClassNotFoundException {
+    public ArrayList<User> customerReader() throws SQLException, ClassNotFoundException {
         ArrayList<User> userList = new ArrayList<>();
         Connection connection = null;
         Statement statement = null;

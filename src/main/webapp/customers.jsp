@@ -1,4 +1,5 @@
-<%--
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="model.User" %><%--
   Created by IntelliJ IDEA.
   User: bueko
   Date: 05/03/2019
@@ -89,6 +90,17 @@
     </div>
 
     <h3>List of customers</h3>
+<%
+    ArrayList<User> users = (ArrayList<User>) request.getAttribute("users");
+    StringBuilder stringBuilder = new StringBuilder();
+
+    for (User user :
+            users) {
+        stringBuilder.append(user.getEmail());
+    }
+%>
+
+    <p> <%=stringBuilder.toString()%></p>
 
 </div>
 </body>

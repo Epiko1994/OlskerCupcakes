@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,7 +30,7 @@
             <img src="img/cupcake.svg" width="30" height="30" class="d-inline-block align-top" alt="logo">
         </a>
         <a class="active" href="index.jsp">Shop</a>
-        <a href="customers.jsp">Kunder</a>
+        <a href="servlet">Kunder</a>
         <a href="orders.jsp">Ordrer</a>
 
         <!-- Login popup -->
