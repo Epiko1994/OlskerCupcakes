@@ -110,7 +110,7 @@
                         "  </tr>";
                 template = template.replace("_orderid_",Integer.toString(order.getOrderID()));
                 template = template.replace("_userid_", user.getEmail());
-                template = template.replace("_date_", Integer.toString(user.getUserID()));
+                template = template.replace("_date_", order.getDateTime());
                 template = template.replace("_balance_", Integer.toString(user.getSaldo()));
                 stringBuilder.append(template);
             }
