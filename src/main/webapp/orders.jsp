@@ -1,4 +1,7 @@
-<%--
+<%@ page import="model.Cupcake" %>
+<%@ page import="model.User" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="model.Order" %><%--
   Created by IntelliJ IDEA.
   User: bueko
   Date: 05/03/2019
@@ -89,6 +92,41 @@
     </div>
 
     <h3>List of orders</h3>
+    <%
+        ArrayList<User> users = (ArrayList<User>) request.getAttribute("users");
+        ArrayList<Cupcake> cupcakes = (ArrayList<Cupcake>) request.getAttribute("cupcakes");
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for (User user :
+                users) {
+            for (Order order:
+                user.getOrders()) {
+
+                String template = "<tr>\n" +
+                        "    <td>_orderid_</td>\n" +
+                        "    <td>_userid_</td> \n" +
+                        "    <td>_date_</td> \n" +
+                        "    <td>_balance_</td>\n" +
+                        "  </tr>";
+                template = template.replace("_orderid_",Integer.toString(order.getOrderID()));
+                template = template.replace("_userid_", user.getEmail());
+                template = template.replace("_date_", Integer.toString(user.getUserID()));
+                template = template.replace("_balance_", Integer.toString(user.getSaldo()));
+                stringBuilder.append(template);
+            }
+        }
+    %>
+    <div class="container-fluid">
+        <table class="table">
+            <tr>
+                <th>Order-ID</th>
+                <th>Kunde-ID</th>
+                <th>Date</th>
+                <th>Saldo</th>
+            </tr>
+            <%=stringBuilder.toString()%>
+        </table>
+    </div>
 
 </div>
 </body>
