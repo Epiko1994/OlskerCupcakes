@@ -30,8 +30,8 @@
             <img src="img/cupcake.svg" width="30" height="30" class="d-inline-block align-top" alt="logo">
         </a>
         <a class="active" href="index.jsp">Shop</a>
-        <a href="servlet">Kunder</a>
-        <a href="orders.jsp">Ordrer</a>
+        <a href="servlet?destination=customers.jsp">Kunder</a>
+        <a href="servlet?destination=orders.jsp">Ordrer</a>
 
         <!-- Login popup -->
         <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>

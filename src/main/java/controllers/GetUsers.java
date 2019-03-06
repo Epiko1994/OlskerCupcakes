@@ -23,7 +23,9 @@ public class GetUsers extends javax.servlet.http.HttpServlet {
         } catch (SQLException | ClassNotFoundException e) {
             request.setAttribute("users", e);
         }
+
+        String destination = request.getParameter("destination");
         //todo sæt destination til en string der sættes i reqDispatcher
-        request.getRequestDispatcher("customers.jsp").forward(request, response);
+        request.getRequestDispatcher(destination).forward(request, response);
     }
 }
