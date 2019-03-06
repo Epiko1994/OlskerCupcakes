@@ -36,40 +36,47 @@
 
     <img src="img/cupcakeBanner.png" alt="Logo" class="img-fluid"/>
 
-    <div class="navbar">
-        <a class="navbar-brand" href="#">
+    <div class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="index.jsp">
             <img src="img/cupcake.svg" width="30" height="30" class="d-inline-block align-top" alt="logo">
         </a>
-        <a href="index.jsp">Shop</a>
-        <a href="customers.jsp">Kunder</a>
-        <a class="active" href="orders.jsp">Ordrer</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <a href="index.jsp">Shop</a>
+                <a href="servlet?destination=customers.jsp">Kunder</a>
+                <a class="active" href="servlet?destination=orders.jsp">Ordrer</a>
+            </ul>
 
-        <!-- Login popup -->
-        <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
+            <!-- Login popup -->
+            <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
 
-        <div id="id01" class="modal">
+            <div id="id01" class="modal">
 
-            <form class="modal-content animate" action="/action_page.php">
+                <form class="modal-content animate" action="/action_page.php"><!-- TODO: Login controller -->
 
-                <div class="container">
+                    <div class="container">
                     <span onclick="document.getElementById('id01').style.display='none'" class="close"
                           title="Close Modal">&times;</span>
 
-                    <label for="email"><b>Email</b></label>
-                    <input type="text" placeholder="Enter Email" id="email" required>
-                    <label for="psw"><b>Password</b></label>
-                    <input type="password" placeholder="Enter Password" id="psw" required>
-                    <label>
-                        <input type="checkbox" checked="checked" name="remember"> Remember me
-                    </label>
-                    <button type="submit">Login</button>
-                    <button type="button" onclick="document.getElementById('id01').style.display='none'"
-                            class="cancelbtn">Cancel
-                    </button>
-                </div>
+                        <label for="email"><b>Email</b></label>
+                        <input type="text" placeholder="Enter Email" id="email" required>
+                        <label for="psw"><b>Password</b></label>
+                        <input type="password" placeholder="Enter Password" id="psw" required>
+                        <label>
+                            <input type="checkbox" checked="checked" name="remember"> Remember me
+                        </label>
+                        <button type="submit">Login</button>
+                        <button type="button" onclick="document.getElementById('id01').style.display='none'"
+                                class="cancelbtn">Cancel
+                        </button>
+                    </div>
 
-            </form>
-
+                </form>
+            </div>
         </div>
 
         <script>
@@ -86,7 +93,7 @@
 
 
         <a class="nav-link" href="shoppingBasket.jsp">
-            <img href="shoppingBasket.jsp" src="img/shopping-basket.svg" width="30" height="30" class="d-inline-block align-top"
+            <img src="img/shopping-basket.svg" width="30" height="30" class="d-inline-block align-top"
                  alt="logo">
         </a>
 
