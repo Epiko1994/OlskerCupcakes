@@ -25,7 +25,6 @@ public class GetUsers extends javax.servlet.http.HttpServlet {
         }
 
         String destination = request.getParameter("destination");
-        //todo sæt destination til en string der sættes i reqDispatcher
         request.getRequestDispatcher(destination).forward(request, response);
     }
 }
