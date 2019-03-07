@@ -1,4 +1,5 @@
-<%--
+<%@ page import="model.Cupcake" %>
+<%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
   User: Emil
   Date: 05-03-2019
@@ -92,6 +93,43 @@
         </a>
 
     </div>
+
+    <%
+        ArrayList<Cupcake> shopList = (ArrayList<Cupcake>) request.getAttribute("shopList");
+
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for (Cupcake cupcake : shopList) {
+
+            String template = "<tr>\n" +
+                    "    <td>_base_</td>\n" +
+                    "    <td>_topping_</td> \n" +
+                    "    <td>_amount_</td> \n" +
+                    "    <td>_price_</td>\n" +
+                    "    <td>_total_</td>" +
+                    "  </tr>";
+            template = template.replace("_base_", cupcake.getBase());
+            template = template.replace("_topping_", cupcake.getTop());
+            template = template.replace("_amount_", Integer.toString(cupcake.getAmount()));
+            template = template.replace("_price_", Integer.toString(cupcake.getPrice()));
+            template = template.replace("_total_", Integer.toString(cupcake.getPrice() * cupcake.getAmount()));
+            stringBuilder.append(template);
+        }
+    %>
+
+    <div class="container-fluid">
+        <table class="table">
+            <tr>
+                <th>Bund</th>
+                <th>Topping</th>
+                <th>Antal</th>
+                <th>Pris</th>
+                <th>Total</th>
+            </tr>
+            <%=stringBuilder.toString()%>
+        </table>
+    </div>
+
 </div>
 </body>
 </html>
