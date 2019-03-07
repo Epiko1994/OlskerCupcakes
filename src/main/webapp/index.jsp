@@ -99,26 +99,33 @@
             <div id="cupcakeselectionbox" class="row">
 
                 <div class="col-sm-3 dropdown_box">
-                    <select name="bottom" class="form-control">
+                    <select name="base" class="form-control">
                         <option selected disabled>Vælg bund</option>
-                        <option value="1">Chocolate</option>
-                        <option value="2">Vanilla</option>
-                        <option value="3">Nutmeg</option>
-                        <option value="4">Pistacio</option>
+                        <option value="Chocolate">Chocolate</option>
+                        <option value="Vanilla">Vanilla</option>
+                        <option value="Nutmeg">Nutmeg</option>
+                        <option value="Pistacio">Pistacio</option>
+                        <option value="Almond">Almond</option>
                     </select>
                 </div>
 
                 <div class="col-sm-3 dropdown_box">
                     <select name="top" class="form-control">
                         <option selected disabled>Vælg top</option>
-                        <option value="1">Chocolate</option>
-                        <option value="2">Blueberry</option>
-                        <option value="3">Rasberry</option>
+                        <option value="Chocolate">Chocolate</option>
+                        <option value="Blueberry">Blueberry</option>
+                        <option value="Raspberry">Rasberry</option>
+                        <option value="Crispy">Crispy</option>
+                        <option value="Strawberry">Strawberry</option>
+                        <option value="Rum&Raisin">Rum&Raisin</option>
+                        <option value="Orange">Orange</option>
+                        <option value="Lemon">Lemon</option>
+                        <option value="Blue Cheese">Blue Cheese</option>
                     </select>
                 </div>
 
                 <div class="col-sm-3 dropdown_box">
-                    <select name="number" class="form-control">
+                    <select name="amount" class="form-control">
                         <option selected disabled>Vælg antal</option>
                         <option value="1">1</option>
                         <option value="2">2</option>

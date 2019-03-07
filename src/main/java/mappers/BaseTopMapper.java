@@ -1,17 +1,15 @@
 package mappers;
 
-import model.Base;
-import model.Topping;
 import util.ConnnectionConfiguration;
 
 import java.sql.*;
-import java.util.ArrayList;
+import java.util.HashMap;
 
 public class BaseTopMapper {
 
-    public ArrayList<Base> baseReader() throws SQLException, ClassNotFoundException {
+    public HashMap<String,Integer> baseReader() throws SQLException, ClassNotFoundException {
 
-        ArrayList<Base> baseList = new ArrayList<>();
+        HashMap<String,Integer> baseList = new HashMap<>();
         Connection connection = null;
         Statement statement = null;
         PreparedStatement preparedStatement;
@@ -24,15 +22,15 @@ public class BaseTopMapper {
         while (resultSet.next()) {
             String name = resultSet.getString("base_name");
             int price = resultSet.getInt("base_price");
-            baseList.add(new Base(name,price));
+            baseList.put(name,price);
         }
 
         return baseList;
     }
 
-    public ArrayList<Topping> topReader() throws SQLException, ClassNotFoundException {
+    public HashMap<String,Integer> topReader() throws SQLException, ClassNotFoundException {
 
-        ArrayList<Topping> topList = new ArrayList<>();
+        HashMap<String,Integer> topList = new HashMap<>();
         Connection connection = null;
         Statement statement = null;
         PreparedStatement preparedStatement;
@@ -45,10 +43,9 @@ public class BaseTopMapper {
         while (resultSet.next()) {
             String name = resultSet.getString("topping_name");
             int price = resultSet.getInt("topping_price");
-            topList.add(new Topping(name,price));
+            topList.put(name,price);
         }
 
         return topList;
     }
-
 }
