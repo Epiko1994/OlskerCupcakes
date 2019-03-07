@@ -39,5 +39,6 @@ public class customerPageController extends HttpServlet {
         }
         request.setAttribute("user", user);
         request.getRequestDispatcher("customerPage.jsp").forward(request, response);
+        //check
     }
 }
