@@ -95,6 +95,7 @@
     </div>
 
     <%
+
         ArrayList<Cupcake> shopList = (ArrayList<Cupcake>) request.getAttribute("shopList");
 
         StringBuilder stringBuilder = new StringBuilder();

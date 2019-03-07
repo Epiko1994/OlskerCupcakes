@@ -131,7 +131,7 @@
                 <th>Bund</th>
                 <th>Topping</th>
                 <th>Antal</th>
-                <th>Total pris</th>
+                <th>Total</th>
             </tr>
             <%=stringBuilder.toString()%>
         </table>

@@ -130,7 +130,7 @@
             <tr>
                 <th>Ordre-ID</th>
                 <th>Dato</th>
-                <th>Pris i alt</th>
+                <th>Total</th>
             </tr>
             <%=stringBuilder.toString()%>
         </table>

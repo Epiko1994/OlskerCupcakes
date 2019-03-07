@@ -29,6 +29,7 @@ public class ShopController extends HttpServlet {
 
         String source = request.getParameter("source");
 
+
         ArrayList<Cupcake> shopList = new ArrayList<>();
 
         switch (source){
@@ -41,12 +42,30 @@ public class ShopController extends HttpServlet {
                 int topPrice = topList.get(top);
                 int cupcakePrice = basePrice+topPrice;
 
+
                 shopList.add(new Cupcake(top,base,cupcakePrice,amount));
 
                 request.setAttribute("shopList",shopList);
 
-                request.getRequestDispatcher("shoppingBasket.jsp").forward(request, response);
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+
+                break;
             }
+
+            case "shopicon": {
+                if (shopList.isEmpty()) {
+                    request.setAttribute("basket", null);
+                    request.getRequestDispatcher("shoppingBasket.jsp").forward(request, response);
+                    break;
+                }
+
+                request.setAttribute("basket", shopList);
+                request.getRequestDispatcher("shoppingBasket.jsp").forward(request, response);
+
+                break;
+            }
+
+            //case "": {
 
         }
     }

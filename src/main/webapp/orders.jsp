@@ -135,7 +135,7 @@
                 <th>Order-ID</th>
                 <th>Kunde-ID</th>
                 <th>Date</th>
-                <th>Total pris</th>
+                <th>Total</th>
             </tr>
             <%=stringBuilder.toString()%>
         </table>

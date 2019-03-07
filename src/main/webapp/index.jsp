@@ -81,7 +81,7 @@
         </script>
 
 
-        <a class="nav-link" href="shoppingBasket.jsp">
+        <a class="nav-link" href="/shopservlet?source=shopicon">
             <img src="img/shopping-basket.svg" width="30" height="30" class="d-inline-block align-top"
                  alt="logo">
         </a>
