@@ -118,7 +118,7 @@
                     "  </tr>";
             template = template.replace("_orderid_", Integer.toString(order.getOrderID()));
             template = template.replace("_date_", order.getDateTime());
-            template = template.replace("_total_", "Der skal sættes total pris ind her");
+            template = template.replace("_total_",  Integer.toString(order.getTotalprice()));
             stringBuilder.append(template);
         }
     %>
