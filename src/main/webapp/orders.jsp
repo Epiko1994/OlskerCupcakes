@@ -102,7 +102,6 @@
     <h3>List of orders</h3>
     <%
         ArrayList<User> users = (ArrayList<User>) request.getAttribute("users");
-        ArrayList<Cupcake> cupcakes = (ArrayList<Cupcake>) request.getAttribute("cupcakes");
         StringBuilder stringBuilder = new StringBuilder();
 
         for (User user :
@@ -115,7 +114,7 @@
                         "    <td>_userid_</td> \n" +
                         "    <td>_date_</td> \n" +
                         "    <td>_balance_</td>\n" +
-                        "    <td> <a href=\"OrderPageController\">Ordre</a>" +
+                        "    <td> <a href=\"OrderPageController?orderid=_orderid_\">Ordre</a></td>\n" +
                         "  </tr>";
                 template = template.replace("_orderid_",Integer.toString(order.getOrderID()));
                 template = template.replace("_userid_", user.getEmail());
