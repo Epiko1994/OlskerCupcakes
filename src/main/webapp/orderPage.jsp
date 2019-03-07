@@ -128,10 +128,10 @@
     <div class="container-fluid">
         <table class="table">
             <tr>
-                <th>Ordre-ID</th>
-                <th>Dato</th>
-                <th>Pris i alt</th>
+                <th>Bund</th>
+                <th>Topping</th>
                 <th>Antal</th>
+                <th>Total pris</th>
             </tr>
             <%=stringBuilder.toString()%>
         </table>

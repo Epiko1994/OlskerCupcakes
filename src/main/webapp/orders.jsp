@@ -22,7 +22,8 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!-- Optional JavaScript: jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            integrity="sha384-q8
+            i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
             crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
             integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
@@ -102,6 +103,10 @@
     <h3>List of orders</h3>
     <%
         ArrayList<User> users = (ArrayList<User>) request.getAttribute("users");
+
+
+
+
         StringBuilder stringBuilder = new StringBuilder();
 
         for (User user :
@@ -113,13 +118,13 @@
                         "    <td>_orderid_</td>\n" +
                         "    <td>_userid_</td> \n" +
                         "    <td>_date_</td> \n" +
-                        "    <td>_balance_</td>\n" +
+                        "    <td>_totalpris_</td>\n" +
                         "    <td> <a href=\"OrderPageController?orderid=_orderid_\">Ordre</a></td>\n" +
                         "  </tr>";
                 template = template.replace("_orderid_",Integer.toString(order.getOrderID()));
                 template = template.replace("_userid_", user.getEmail());
                 template = template.replace("_date_", order.getDateTime());
-                template = template.replace("_balance_", Integer.toString(user.getSaldo()));
+                template = template.replace("_totalpris_", Integer.toString(order.getTotalprice()));
                 stringBuilder.append(template);
             }
         }
@@ -130,7 +135,7 @@
                 <th>Order-ID</th>
                 <th>Kunde-ID</th>
                 <th>Date</th>
-                <th>Saldo</th>
+                <th>Total pris</th>
             </tr>
             <%=stringBuilder.toString()%>
         </table>

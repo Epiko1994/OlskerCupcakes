@@ -50,10 +50,21 @@ public class UserMapper {
                 while (resultSet.next()) {
                     Cupcake cupcake = new Cupcake(resultSet.getString("topping_name"), resultSet.getString("base_name"), resultSet.getInt("price"), resultSet.getInt("amount"));
                     order.getCupcakes().add(cupcake);
+
+                    order.setTotalprice(total(order.getCupcakes()));
                 }
             }
         }
-
         return userList;
+    }
+
+    private int total(ArrayList<Cupcake> cupcakes){
+        int sum = 0;
+        for (Cupcake cupcake :
+                cupcakes) {
+            sum = sum + (cupcake.getPrice()*cupcake.getAmount());
+        }
+
+        return sum;
     }
 }
