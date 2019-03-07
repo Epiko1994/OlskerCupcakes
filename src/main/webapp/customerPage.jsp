@@ -1,3 +1,6 @@
+<%@ page import="model.Cupcake" %>
+<%@ page import="model.Order" %>
+<%@ page import="model.User" %>
 <%--
   Created by IntelliJ IDEA.
   User: Emil
@@ -8,7 +11,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Kundeside</title>    <link href="css/cupcake.css" rel="stylesheet" type="text/css">
+    <title>Kundeside</title>
+    <link href="css/cupcake.css" rel="stylesheet" type="text/css">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -31,6 +35,7 @@
     <img src="img/cupcakeBanner.png" alt="Logo" class="img-fluid"/>
 
     <div class="navbar">
+
         <a class="navbar-brand" href="#">
             <img src="img/cupcake.svg" width="30" height="30" class="d-inline-block align-top" alt="logo">
         </a>
@@ -85,5 +90,39 @@
         </a>
 
     </div>
+
+    <%
+        User user = (User) request.getAttribute("list");
+        StringBuilder stringBuilder = new StringBuilder();
+        StringBuilder cupcakes = new StringBuilder();
+
+        for (Order order :
+                user.getOrders()) {
+            for (Cupcake cupcake : order.getCupcakes()) {
+                cupcakes.append(cupcake.getTop());
+            }
+            String template = "<tr>\n" +
+                    "    <td>_orderid_</a></td>\n" +
+                    "    <td>_userid_</td> \n" +
+                    "    <td>_balance_</td>\n" +
+                    "  </tr>";
+            template = template.replace("_orderid_", Integer.toString(order.getOrderID()));
+            template = template.replace("_userid_", order.getOrderID());
+            template = template.replace("_balance_", Integer.toString(user.getSaldo()));
+            stringBuilder.append(template);
+        }
+    %>
+    <div class="container-fluid">
+        <table class="table">
+            <tr>
+                <th>E-mail</th>
+                <th>Kunde-ID</th>
+                <th>Saldo</th>
+            </tr>
+            <%=stringBuilder.toString()%>
+        </table>
+    </div>
+
+</div>
 </body>
 </html>

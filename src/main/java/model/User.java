@@ -18,6 +18,10 @@ public class User {
         this.orders = new ArrayList<>();
     }
 
+    public User() {
+
+    }
+
     public int getUserID() {
         return userID;
     }

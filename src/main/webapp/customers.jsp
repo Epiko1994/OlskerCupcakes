@@ -1,5 +1,5 @@
-<%@ page import="java.util.ArrayList" %>
 <%@ page import="model.User" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -90,7 +90,7 @@
 
     </div>
 
-    <h3>List of customers</h3>
+    <h3>Kundeliste</h3>
     <%
         ArrayList<User> users = (ArrayList<User>) request.getAttribute("users");
         StringBuilder stringBuilder = new StringBuilder();
@@ -98,7 +98,7 @@
         for (User user :
                 users) {
             String template = "<tr>\n" +
-                    "    <td>_email_</td>\n" +
+                    "    <td><a href=\"customerPageController?userid=_userid_\">_email_</a></td>\n" +
                     "    <td>_userid_</td> \n" +
                     "    <td>_balance_</td>\n" +
                     "  </tr>";
