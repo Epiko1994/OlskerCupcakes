@@ -1,3 +1,9 @@
+<%@ page import="model.User" %>
+<%@ page import="model.Order" %>
+<%@ page import="model.Cupcake" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <%--
   Created by IntelliJ IDEA.
   User: Emil
@@ -28,62 +34,107 @@
 <body>
 <div class="container">
 
-    <img src="img/cupcakeBanner.png" alt="Logo" class="img-fluid"/>
+        <img src="img/cupcakeBanner.png" alt="Logo" class="img-fluid"/>
 
-    <div class="navbar">
-        <a class="navbar-brand" href="#">
-            <img src="img/cupcake.svg" width="30" height="30" class="d-inline-block align-top" alt="logo">
-        </a>
-        <a class="active" href="index.jsp">Shop</a>
-        <a href="customers.jsp">Kunder</a>
-        <a href="orders.jsp">Ordrer</a>
+        <div class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand" href="index.jsp">
+                <img src="img/cupcake.svg" width="30" height="30" class="d-inline-block align-top" alt="logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mr-auto">
+                    <a class="active" href="index.jsp">Shop</a>
+                    <a href="servlet?destination=customers.jsp">Kunder</a>
+                    <a href="servlet?destination=orders.jsp">Ordrer</a>
+                </ul>
 
-        <!-- Login popup -->
-        <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
+                <!-- Login popup -->
+                <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
 
-        <div id="id01" class="modal">
+                <div id="id01" class="modal">
 
-            <form class="modal-content animate" action="/action_page.php">
+                    <form class="modal-content animate" action="/action_page.php"><!-- TODO: Login controller -->
 
-                <div class="container">
+                        <div class="container">
                     <span onclick="document.getElementById('id01').style.display='none'" class="close"
                           title="Close Modal">&times;</span>
 
-                    <label for="email"><b>Email</b></label>
-                    <input type="text" placeholder="Enter Email" id="email" required>
-                    <label for="psw"><b>Password</b></label>
-                    <input type="password" placeholder="Enter Password" id="psw" required>
-                    <label>
-                        <input type="checkbox" checked="checked" name="remember"> Remember me
-                    </label>
-                    <button type="submit">Login</button>
-                    <button type="button" onclick="document.getElementById('id01').style.display='none'"
-                            class="cancelbtn">Cancel
-                    </button>
-                </div>
+                            <label for="email"><b>Email</b></label>
+                            <input type="text" placeholder="Enter Email" id="email" required>
+                            <label for="psw"><b>Password</b></label>
+                            <input type="password" placeholder="Enter Password" id="psw" required>
+                            <label>
+                                <input type="checkbox" checked="checked" name="remember"> Remember me
+                            </label>
+                            <button type="submit">Login</button>
+                            <button type="button" onclick="document.getElementById('id01').style.display='none'"
+                                    class="cancelbtn">Cancel
+                            </button>
+                        </div>
 
-            </form>
+                    </form>
+                </div>
+            </div>
+
+            <script>
+                // Get the modal
+                var modal = document.getElementById('id01');
+
+                // When the user clicks anywhere outside of the modal, close it
+                window.onclick = function (event) {
+                    if (event.target == modal) {
+                        modal.style.display = "none";
+                    }
+                }
+            </script>
+
+
+            <a class="nav-link" href="shoppingBasket.jsp">
+                <img src="img/shopping-basket.svg" width="30" height="30" class="d-inline-block align-top"
+                     alt="logo">
+            </a>
 
         </div>
 
-        <script>
-            // Get the modal
-            var modal = document.getElementById('id01');
+    <h3>Orderliste</h3>
+    <%
 
-            // When the user clicks anywhere outside of the modal, close it
-            window.onclick = function (event) {
-                if (event.target == modal) {
-                    modal.style.display = "none";
-                }
-            }
-        </script>
+        StringBuilder stringBuilder = new StringBuilder();
+        Order order = (Order) request.getAttribute("order");
+
+            for (Cupcake cupcake :
+                    order.getCupcakes()
+            ) {
 
 
-        <a class="nav-link" href="shoppingBasket.jsp">
-            <img src="img/shopping-basket.svg" width="30" height="30" class="d-inline-block align-top"
-                 alt="logo">
-        </a>
+                String template = "<tr>\n" +
+                        "    <td>_top_</td>\n" +
+                        "    <td>_bottom_</td> \n" +
+                        "    <td>_amount_</td> \n" +
+                        "    <td>_price_</td>\n" +
+                        "  </tr>";
+                template = template.replace("_top_", cupcake.getTop());
+                template = template.replace("_bottom_", cupcake.getBase());
+                template = template.replace("_amount_", Integer.toString(cupcake.getAmount()));
+                template = template.replace("_price_", Integer.toString(cupcake.getPrice()));
+                stringBuilder.append(template);
 
+        }
+    %>
+    <h3>orderid<%=order.getOrderID()%></h3>
+    <div class="container-fluid">
+        <table class="table">
+            <tr>
+                <th>Ordre-ID</th>
+                <th>Dato</th>
+                <th>Pris i alt</th>
+                <th>Antal</th>
+            </tr>
+            <%=stringBuilder.toString()%>
+        </table>
     </div>
 </div>
 </body>
