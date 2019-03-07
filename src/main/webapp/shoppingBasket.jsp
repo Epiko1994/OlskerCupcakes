@@ -95,27 +95,34 @@
     </div>
 
     <%
-
-        ArrayList<Cupcake> shopList = (ArrayList<Cupcake>) request.getAttribute("shopList");
-
         StringBuilder stringBuilder = new StringBuilder();
+        ArrayList<Cupcake> shopList;
+        if (request.getAttribute("basket") != null) {
+            shopList = (ArrayList<Cupcake>) request.getAttribute("basket");
+            stringBuilder = new StringBuilder();
 
-        for (Cupcake cupcake : shopList) {
+            for (Cupcake cupcake : shopList) {
 
-            String template = "<tr>\n" +
-                    "    <td>_base_</td>\n" +
-                    "    <td>_topping_</td> \n" +
-                    "    <td>_amount_</td> \n" +
-                    "    <td>_price_</td>\n" +
-                    "    <td>_total_</td>" +
-                    "  </tr>";
-            template = template.replace("_base_", cupcake.getBase());
-            template = template.replace("_topping_", cupcake.getTop());
-            template = template.replace("_amount_", Integer.toString(cupcake.getAmount()));
-            template = template.replace("_price_", Integer.toString(cupcake.getPrice()));
-            template = template.replace("_total_", Integer.toString(cupcake.getPrice() * cupcake.getAmount()));
-            stringBuilder.append(template);
+                String template = "<tr>\n" +
+                        "    <td>_base_</td>\n" +
+                        "    <td>_topping_</td> \n" +
+                        "    <td>_amount_</td> \n" +
+                        "    <td>_price_</td>\n" +
+                        "    <td>_total_</td>" +
+                        "  </tr>";
+                template = template.replace("_base_", cupcake.getBase());
+                template = template.replace("_topping_", cupcake.getTop());
+                template = template.replace("_amount_", Integer.toString(cupcake.getAmount()));
+                template = template.replace("_price_", Integer.toString(cupcake.getPrice()));
+                template = template.replace("_total_", Integer.toString(cupcake.getPrice() * cupcake.getAmount()));
+                stringBuilder.append(template);
+            }
+        } else {
+            stringBuilder.append("<p>Din indkøbskurv er tom!</p>");
+
         }
+
+
     %>
 
     <div class="container-fluid">

@@ -12,13 +12,16 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-@WebServlet(name = "ShopController", urlPatterns = "/shopservlet")
+@WebServlet(name = "ShopController", urlPatterns = "/shopcontroller")
 public class ShopController extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+    private ArrayList<Cupcake> shopList = new ArrayList<>();
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         BaseTopMapper baseTopMapper = new BaseTopMapper();
         HashMap<String, Integer> baseList = new HashMap<>();
         HashMap<String, Integer> topList = new HashMap<>();
+
 
         try {
             baseList = baseTopMapper.baseReader();
@@ -29,8 +32,9 @@ public class ShopController extends HttpServlet {
 
         String source = request.getParameter("source");
 
-
-        ArrayList<Cupcake> shopList = new ArrayList<>();
+        if (shopList.isEmpty()) {
+            shopList = new ArrayList<>();
+        }
 
         switch (source){
 
@@ -42,11 +46,9 @@ public class ShopController extends HttpServlet {
                 int topPrice = topList.get(top);
                 int cupcakePrice = basePrice+topPrice;
 
-
                 shopList.add(new Cupcake(top,base,cupcakePrice,amount));
 
-                request.setAttribute("shopList",shopList);
-
+                request.setAttribute("basket",shopList);
                 request.getRequestDispatcher("index.jsp").forward(request, response);
 
                 break;
@@ -71,6 +73,57 @@ public class ShopController extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        BaseTopMapper baseTopMapper = new BaseTopMapper();
+        HashMap<String, Integer> baseList = new HashMap<>();
+        HashMap<String, Integer> topList = new HashMap<>();
 
+
+        try {
+            baseList = baseTopMapper.baseReader();
+            topList = baseTopMapper.topReader();
+        } catch (Exception e) {
+            e.printStackTrace(); //TODO: Print something
+        }
+
+        String source = request.getParameter("source");
+
+        if (shopList.isEmpty()) {
+            shopList = new ArrayList<>();
+        }
+
+        switch (source){
+
+            case "addtocart": {
+                String base = request.getParameter("base");
+                String top = request.getParameter("top");
+                int amount = Integer.parseInt(request.getParameter("amount"));
+                int basePrice = baseList.get(base);
+                int topPrice = topList.get(top);
+                int cupcakePrice = basePrice+topPrice;
+
+                shopList.add(new Cupcake(top,base,cupcakePrice,amount));
+
+                request.setAttribute("basket",shopList);
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+
+                break;
+            }
+
+            case "shopicon": {
+                if (shopList.isEmpty()) {
+                    request.setAttribute("basket", null);
+                    request.getRequestDispatcher("shoppingBasket.jsp").forward(request, response);
+                    break;
+                }
+
+                request.setAttribute("basket", shopList);
+                request.getRequestDispatcher("shoppingBasket.jsp").forward(request, response);
+
+                break;
+            }
+
+            //case "": {
+
+        }
     }
 }

@@ -81,7 +81,7 @@
         </script>
 
 
-        <a class="nav-link" href="/shopservlet?source=shopicon">
+        <a class="nav-link" href="shopcontroller?source=shopicon">
             <img src="img/shopping-basket.svg" width="30" height="30" class="d-inline-block align-top"
                  alt="logo">
         </a>
@@ -92,7 +92,7 @@
         <h1>Velkommen ombord</h1>
         <h4>Øens bedste cupcakes. Vælg og bestil her:</h4>
 
-        <form action="shopservlet" method="post">
+        <form action="shopcontroller" method="post">
 
             <input type="hidden" name="source" value="addtocart"/>
 
