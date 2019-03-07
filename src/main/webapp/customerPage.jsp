@@ -111,7 +111,7 @@
         for (Order order :
                 user.getOrders()) {
             //todo lav linket
-            String template = "<tr class=\"table-row\"data-href=\"http://tutorialsplane.com\">\n" +
+            String template = "<tr class=\"table-row\"data-href=\"OrderPageController?orderid=_orderid_\">\n" +
                     "    <td>_orderid_</a></td>\n" +
                     "    <td>_date_</td> \n" +
                     "    <td>_total_</td>\n" +
