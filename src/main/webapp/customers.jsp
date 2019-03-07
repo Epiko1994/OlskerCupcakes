@@ -6,11 +6,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Customers</title>
-    <link href="css/cupcake.css" rel="stylesheet" type="text/css">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!-- Optional JavaScript: jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -21,6 +20,12 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
+    <link href="css/cupcake.css" rel="stylesheet" type="text/css">
+    <script>$(document).ready(function ($) {
+        $(".table-row").click(function () {
+            window.document.location = $(this).data("href");
+        });
+    });</script>
 </head>
 <body>
 <div class="container">
@@ -97,8 +102,8 @@
 
         for (User user :
                 users) {
-            String template = "<tr>\n" +
-                    "    <td><a href=\"customerPageController?userid=_userid_\">_email_</a></td>\n" +
+            String template = "<tr class=\"table-row\"data-href=\"customerPageController?userid=_userid_\">" +
+                    "    <td>_email_</td>\n" +
                     "    <td>_userid_</td> \n" +
                     "    <td>_balance_</td>\n" +
                     "  </tr>";
@@ -109,7 +114,7 @@
         }
     %>
     <div class="container-fluid">
-        <table class="table">
+        <table class='table table-bordered table-condensed table-striped table-hover'>
             <tr>
                 <th>E-mail</th>
                 <th>Kunde-ID</th>

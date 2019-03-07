@@ -134,3 +134,7 @@ button:hover {
         transform: scale(1)
     }
 }
+
+.table-row{
+    cursor:pointer;
+}

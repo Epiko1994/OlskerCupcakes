@@ -1,4 +1,3 @@
-<%@ page import="model.Cupcake" %>
 <%@ page import="model.Order" %>
 <%@ page import="model.User" %>
 <%--
@@ -12,7 +11,6 @@
 <html>
 <head>
     <title>Kundeside</title>
-    <link href="css/cupcake.css" rel="stylesheet" type="text/css">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -27,6 +25,15 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
+    <script src="JS/JS.js"></script>
+    <link href="css/cupcake.css" rel="stylesheet" type="text/css">
+    <script>
+        $(document).ready(function ($) {
+            $(".table-row").click(function () {
+                window.document.location = $(this).data("href");
+            });
+        });
+    </script>
 
 </head>
 <body>
@@ -103,7 +110,8 @@
 
         for (Order order :
                 user.getOrders()) {
-            String template = "<tr>\n" +
+            //todo lav linket
+            String template = "<tr class=\"table-row\"data-href=\"http://tutorialsplane.com\">\n" +
                     "    <td>_orderid_</a></td>\n" +
                     "    <td>_date_</td> \n" +
                     "    <td>_total_</td>\n" +
@@ -114,9 +122,11 @@
             stringBuilder.append(template);
         }
     %>
-    <h3><%=user.getEmail()%></h3>
+
+    <h3><%=user.getEmail()%>
+    </h3>
     <div class="container-fluid">
-        <table class="table">
+        <table class="table table-bordered table-condensed table-striped table-hover">
             <tr>
                 <th>Ordre-ID</th>
                 <th>Dato</th>
