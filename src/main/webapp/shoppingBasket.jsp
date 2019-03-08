@@ -97,18 +97,19 @@
     <%
         StringBuilder stringBuilder = new StringBuilder();
         ArrayList<Cupcake> shopList;
+        int totalPrice = 0;
+        int totalCupcakes = 0;
         if (request.getAttribute("basket") != null) {
             shopList = (ArrayList<Cupcake>) request.getAttribute("basket");
             stringBuilder = new StringBuilder();
-
             for (Cupcake cupcake : shopList) {
 
                 String template = "<tr>\n" +
                         "    <td>_base_</td>\n" +
                         "    <td>_topping_</td> \n" +
-                        "    <td>_amount_</td> \n" +
-                        "    <td>_price_</td>\n" +
-                        "    <td>_total_</td>" +
+                        "    <td style=\"text-align: right\">_amount_ stk.</td> \n" +
+                        "    <td style=\"text-align: right\">_price_ ,-</td>\n" +
+                        "    <td style=\"text-align: right\">_total_ ,-</td>" +
                         "  </tr>";
                 template = template.replace("_base_", cupcake.getBase());
                 template = template.replace("_topping_", cupcake.getTop());
@@ -116,25 +117,33 @@
                 template = template.replace("_price_", Integer.toString(cupcake.getPrice()));
                 template = template.replace("_total_", Integer.toString(cupcake.getPrice() * cupcake.getAmount()));
                 stringBuilder.append(template);
+                totalPrice = totalPrice + cupcake.getPrice() * cupcake.getAmount();
+                totalCupcakes = totalCupcakes + cupcake.getAmount();
             }
         } else {
             stringBuilder.append("<p>Din indkøbskurv er tom!</p>");
-
         }
-
 
     %>
 
     <div class="container-fluid">
-        <table class="table">
+        <table class='table table-condensed table-striped table-hover'>
             <tr>
                 <th>Bund</th>
                 <th>Topping</th>
-                <th>Antal</th>
-                <th>Pris</th>
-                <th>Total</th>
+                <th style="text-align: right">Antal</th>
+                <th style="text-align: right">Pris</th>
+                <th style="text-align: right">Total</th>
             </tr>
             <%=stringBuilder.toString()%>
+            <tr>
+            <tr>
+                <td><b>Total:</b></td>
+                <td></td>
+                <td style="text-align: right"><%=totalCupcakes%> stk.</td>
+                <td></td>
+                <td style="text-align: right"><%=totalPrice%> ,-</td>
+            </tr>
         </table>
     </div>
 
