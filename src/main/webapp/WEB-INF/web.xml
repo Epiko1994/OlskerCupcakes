@@ -4,8 +4,11 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
-    <servlet>
-        <servlet-name>GetUsers</servlet-name>
-        <servlet-class>controllers.GetUsers</servlet-class>
-    </servlet>
+    <servlet-mapping>
+        <servlet-name>indexController</servlet-name>
+        <url-pattern>/indexController</url-pattern>
+    </servlet-mapping>
+    <welcome-file-list>
+        <welcome-file>indexController</welcome-file>
+    </welcome-file-list>
 </web-app>

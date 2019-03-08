@@ -1,3 +1,6 @@
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.Map.Entry" %>
+<%@ page import="java.util.HashMap" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,7 +38,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mr-auto">
-                <a class="active" href="index.jsp">Shop</a>
+                <a class="active" href="/indexController">Shop</a>
                 <a href="servlet?destination=customers.jsp">Kunder</a>
                 <a href="servlet?destination=orders.jsp">Ordrer</a>
             </ul>
@@ -95,6 +98,32 @@
         <h1>Velkommen ombord</h1>
         <h4>Øens bedste cupcakes. Vælg og bestil her:</h4>
 
+        <%
+            HashMap<String, Integer> topHash = (HashMap<String, Integer>) request.getAttribute("topHash");
+            HashMap<String, Integer> baseHash = (HashMap<String, Integer>) request.getAttribute("baseHash");
+
+            StringBuilder top = new StringBuilder();
+            StringBuilder base = new StringBuilder();
+
+            for (Entry<String, Integer> entry :
+                    topHash.entrySet()) {
+                String template = "<option value=\"_name_\">_name_, _price_ ,-</option>";
+                template = template.replace("_name_", entry.getKey());
+                template = template.replace("_price_", entry.getValue().toString());
+                top.append(template);
+            }
+
+            for (Entry<String, Integer> entry :
+                    baseHash.entrySet()) {
+                String template = "<option value=\"_name_\">_name_, _price_ ,-</option>";
+                template = template.replace("_name_", entry.getKey());
+                template = template.replace("_price_", entry.getValue().toString());
+                base.append(template);
+            }
+
+        %>
+
+
         <form action="shopcontroller" method="post">
 
             <input type="hidden" name="source" value="addtocart"/>
@@ -104,26 +133,14 @@
                 <div class="col-sm-3 dropdown_box">
                     <select name="base" class="form-control">
                         <option selected disabled>Vælg bund</option>
-                        <option value="Chocolate">Chocolate</option>
-                        <option value="Vanilla">Vanilla</option>
-                        <option value="Nutmeg">Nutmeg</option>
-                        <option value="Pistacio">Pistacio</option>
-                        <option value="Almond">Almond</option>
+                        <%=base.toString()%>
                     </select>
                 </div>
 
                 <div class="col-sm-3 dropdown_box">
                     <select name="top" class="form-control">
                         <option selected disabled>Vælg top</option>
-                        <option value="Chocolate">Chocolate</option>
-                        <option value="Blueberry">Blueberry</option>
-                        <option value="Raspberry">Rasberry</option>
-                        <option value="Crispy">Crispy</option>
-                        <option value="Strawberry">Strawberry</option>
-                        <option value="Rum&Raisin">Rum&Raisin</option>
-                        <option value="Orange">Orange</option>
-                        <option value="Lemon">Lemon</option>
-                        <option value="Blue Cheese">Blue Cheese</option>
+                        <%=top.toString()%>
                     </select>
                 </div>
 

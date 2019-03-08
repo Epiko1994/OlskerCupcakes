@@ -60,7 +60,7 @@ public class ShopController extends HttpServlet {
                 shopList.add(new Cupcake(top,base,cupcakePrice,amount));
 
                 request.setAttribute("basket",shopList);
-                request.getRequestDispatcher("index.jsp").forward(request, response);
+                request.getRequestDispatcher("/indexController").forward(request, response);
 
                 break;
             }
