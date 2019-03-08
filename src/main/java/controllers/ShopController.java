@@ -2,13 +2,16 @@ package controllers;
 
 import mappers.BaseTopMapper;
 import mappers.LoginMapper;
+import mappers.UserMapper;
 import model.Cupcake;
+import model.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -34,12 +37,18 @@ public class ShopController extends HttpServlet {
 
         LoginMapper loginMapper = new LoginMapper();
 
+        UserMapper userMapper = new UserMapper();
+        ArrayList<User> userList = new ArrayList<>();
+
         try {
             baseList = baseTopMapper.baseReader();
             topList = baseTopMapper.topReader();
+            userList = userMapper.customerReader();
         } catch (Exception e) {
             e.printStackTrace(); //TODO: Print something
         }
+
+        HashMap<String,User> userMap = userMapper.UserMap(userList);
 
         String source = request.getParameter("source");
 
@@ -67,6 +76,7 @@ public class ShopController extends HttpServlet {
 
             case "login": {
                 boolean login = false;
+                HttpSession session = request.getSession();
                 String email = request.getParameter("email");
                 String psw = request.getParameter("psw");
                 try {
@@ -76,7 +86,20 @@ public class ShopController extends HttpServlet {
                 }
 
                 if (login){
+                    //request.setAttribute("userData",userMap.get(email));
 
+                    session.setAttribute("userData",userMap.get(email));
+                    session.setAttribute("login",true);
+
+                    request.getRequestDispatcher("index.jsp").forward(request, response);
+                    break;
+
+                }else {
+
+                    session.setAttribute("login",false);
+
+                    request.getRequestDispatcher("index.jsp").forward(request, response);
+                    break;
                 }
             }
 
