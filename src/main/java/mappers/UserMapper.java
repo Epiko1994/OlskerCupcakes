@@ -7,8 +7,10 @@ import util.ConnnectionConfiguration;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class UserMapper {
+
 
     public ArrayList<User> customerReader() throws SQLException, ClassNotFoundException {
         ArrayList<User> userList = new ArrayList<>();
@@ -56,6 +58,17 @@ public class UserMapper {
             }
         }
         return userList;
+    }
+
+    public HashMap<String,User> UserMap(ArrayList<User> userArray){
+
+        HashMap<String,User> userMap = new HashMap<>();
+
+        for (User user : userArray) {
+            userMap.put(user.getEmail(),user);
+        }
+
+        return userMap;
     }
 
     private int total(ArrayList<Cupcake> cupcakes){

@@ -8,24 +8,22 @@ public class LoginMapper {
 
     public boolean loginCheck(String email, String psw) throws SQLException, ClassNotFoundException {
 
-        boolean login;
+        boolean login = false;
 
         Connection connection = null;
-        Statement statement = null;
         PreparedStatement preparedStatement;
         ResultSet resultSet = null;
 
         connection = ConnnectionConfiguration.getConnection();
-        preparedStatement = connection.prepareStatement("SELECT CASE WHEN EXISTS \n" +
-                "(SELECT * FROM user WHERE user.email = ? AND user.password = ?)\n" +
-                "THEN TRUE\n" +
-                "ELSE FALSE\n" +
-                "END\n" +
-                "AS 'login'");
+        preparedStatement = connection.prepareStatement
+                ("SELECT CASE WHEN EXISTS(SELECT * FROM user WHERE user.email = ? AND user.password = ?) THEN TRUE ELSE FALSE END AS login");
         preparedStatement.setString(1,email);
         preparedStatement.setString(2,psw);
         resultSet = preparedStatement.executeQuery();
-        login = resultSet.getBoolean("login");
+
+        while (resultSet.next()) {
+            login = resultSet.getBoolean("login");
+        }
 
         return login;
     }
