@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!-- Optional JavaScript: jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -51,13 +51,10 @@
             <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
 
             <div id="id01" class="modal">
-
                 <form class="modal-content animate" action="/action_page.php"><!-- TODO: Login controller -->
-
                     <div class="container">
                     <span onclick="document.getElementById('id01').style.display='none'" class="close"
                           title="Close Modal">&times;</span>
-
                         <label for="email"><b>Email</b></label>
                         <input type="text" placeholder="Enter Email" id="email" required>
                         <label for="psw"><b>Password</b></label>
@@ -74,7 +71,6 @@
                 </form>
             </div>
         </div>
-
         <script>
             // Get the modal
             var modal = document.getElementById('id01');
@@ -86,13 +82,10 @@
                 }
             }
         </script>
-
-
         <a class="nav-link" href="shoppingBasket.jsp">
             <img src="img/shopping-basket.svg" width="30" height="30" class="d-inline-block align-top"
                  alt="logo">
         </a>
-
     </div>
 
     <h3>Kundeliste</h3>
