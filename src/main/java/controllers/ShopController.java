@@ -1,6 +1,7 @@
 package controllers;
 
 import mappers.BaseTopMapper;
+import mappers.LoginMapper;
 import model.Cupcake;
 
 import javax.servlet.ServletException;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -30,6 +32,7 @@ public class ShopController extends HttpServlet {
         HashMap<String, Integer> baseList = new HashMap<>();
         HashMap<String, Integer> topList = new HashMap<>();
 
+        LoginMapper loginMapper = new LoginMapper();
 
         try {
             baseList = baseTopMapper.baseReader();
@@ -63,8 +66,18 @@ public class ShopController extends HttpServlet {
             }
 
             case "login": {
+                boolean login = false;
                 String email = request.getParameter("email");
                 String psw = request.getParameter("psw");
+                try {
+                    login = loginMapper.loginCheck(email,psw);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                if (login){
+
+                }
             }
 
             case "shopicon": {
