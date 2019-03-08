@@ -45,16 +45,18 @@
 
             <div id="id01" class="modal">
 
-                <form class="modal-content animate" action="/action_page.php"><!-- TODO: Login controller -->
+                <form class="modal-content animate" action="shopcontroller">
+
+                    <input type="hidden" name="source" value="login"/>
 
                     <div class="container">
                     <span onclick="document.getElementById('id01').style.display='none'" class="close"
                           title="Close Modal">&times;</span>
 
                         <label for="email"><b>Email</b></label>
-                        <input type="text" placeholder="Enter Email" id="email" required>
+                        <input type="text" placeholder="Enter Email" name="email">
                         <label for="psw"><b>Password</b></label>
-                        <input type="password" placeholder="Enter Password" id="psw" required>
+                        <input type="password" placeholder="Enter Password" name="psw" required>
                         <label>
                             <input type="checkbox" checked="checked" name="remember"> Remember me
                         </label>
@@ -62,6 +64,7 @@
                         <button type="button" onclick="document.getElementById('id01').style.display='none'"
                                 class="cancelbtn">Cancel
                         </button>
+
                     </div>
 
                 </form>

@@ -62,6 +62,11 @@ public class ShopController extends HttpServlet {
                 break;
             }
 
+            case "login": {
+                String email = request.getParameter("email");
+                String psw = request.getParameter("psw");
+            }
+
             case "shopicon": {
                 if (shopList.isEmpty()) {
                     request.setAttribute("basket", null);
