@@ -98,7 +98,7 @@
             String template = "<tr class=\"table-row\"data-href=\"customerPageController?userid=_userid_\">" +
                     "    <td>_email_</td>\n" +
                     "    <td>_userid_</td> \n" +
-                    "    <td>_balance_</td>\n" +
+                    "    <td style=\"text-align: right\">_balance_ ,-</td>\n" +
                     "  </tr>";
             template = template.replace("_email_", user.getEmail());
             template = template.replace("_userid_", Integer.toString(user.getUserID()));
@@ -107,11 +107,11 @@
         }
     %>
     <div class="container-fluid">
-        <table class='table table-bordered table-condensed table-striped table-hover'>
+        <table class='table table-condensed table-striped table-hover'>
             <tr>
                 <th>E-mail</th>
                 <th>Kunde-ID</th>
-                <th>Saldo</th>
+                <th style="text-align: right">Saldo</th>
             </tr>
             <%=stringBuilder.toString()%>
         </table>

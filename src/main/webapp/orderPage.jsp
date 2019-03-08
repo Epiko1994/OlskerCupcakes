@@ -96,35 +96,44 @@
     <%
 
         StringBuilder stringBuilder = new StringBuilder();
+        int totalPrice = 0;
+        int totalCupcakes = 0;
         Order order = (Order) request.getAttribute("order");
 
         for (Cupcake cupcake : order.getCupcakes()) {
 
             String template = "<tr class=\"table-row\">\n" +
-                    "    <td>_top_</td>\n" +
                     "    <td>_bottom_</td> \n" +
-                    "    <td>_amount_</td> \n" +
-                    "    <td>_price_</td>\n" +
+                    "    <td>_top_</td>\n" +
+                    "    <td style=\"text-align: right\">_amount_ stk.</td> \n" +
+                    "    <td style=\"text-align: right\">_price_ ,-</td>\n" +
                     "  </tr>";
-            template = template.replace("_top_", cupcake.getTop());
             template = template.replace("_bottom_", cupcake.getBase());
+            template = template.replace("_top_", cupcake.getTop());
             template = template.replace("_amount_", Integer.toString(cupcake.getAmount()));
             template = template.replace("_price_", Integer.toString(cupcake.getPrice()*cupcake.getAmount()));
             stringBuilder.append(template);
-
+            totalPrice = totalPrice + cupcake.getPrice() * cupcake.getAmount();
+            totalCupcakes = totalCupcakes + cupcake.getAmount();
         }
     %>
     <h3>Ordre-ID: <%=order.getOrderID()%>
     </h3>
     <div class="container-fluid">
-        <table class='table table-bordered table-condensed table-striped table-hover'>
+        <table class='table table-condensed table-striped table-hover'>
             <tr>
-                <th>Topping</th>
                 <th>Bund</th>
-                <th>Antal</th>
-                <th>Total</th>
+                <th>Topping</th>
+                <th style="text-align: right">Antal</th>
+                <th style="text-align: right">Total</th>
             </tr>
             <%=stringBuilder.toString()%>
+            <tr>
+                <td><b>Total:</b></td>
+                <td></td>
+                <td style="text-align: right"><%=totalCupcakes%> stk.</td>
+                <td style="text-align: right"><%=totalPrice%> ,-</td>
+            </tr>
         </table>
     </div>
 </div>

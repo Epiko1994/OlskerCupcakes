@@ -117,7 +117,7 @@
                         "    <td>_orderid_</td>\n" +
                         "    <td>_userid_</td> \n" +
                         "    <td>_date_</td> \n" +
-                        "    <td>_totalpris_</td>\n" +
+                        "    <td style=\"text-align: right\">_totalpris_ ,-</td>\n" +
                         "  </tr>";
                 template = template.replace("_orderid_", Integer.toString(order.getOrderID()));
                 template = template.replace("_userid_", user.getEmail());
@@ -128,12 +128,12 @@
         }
     %>
     <div class="container-fluid">
-        <table class='table table-bordered table-condensed table-striped table-hover'>
+        <table class='table table-condensed table-striped table-hover'>
             <tr>
                 <th>Ordre-ID</th>
                 <th>Kunde-ID</th>
                 <th>Date</th>
-                <th>Total</th>
+                <th style="text-align: right">Total</th>
             </tr>
             <%=stringBuilder.toString()%>
         </table>
