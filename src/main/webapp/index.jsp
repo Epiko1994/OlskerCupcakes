@@ -1,3 +1,4 @@
+<%@ page import="model.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,47 +42,59 @@
             </ul>
 
             <!-- Login popup -->
-            <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
 
-            <div id="id01" class="modal">
+            <%
+                String loginForm = "";
+                if (session.getAttribute("login") != null && (boolean)session.getAttribute("login")){
+                    User user = (User)session.getAttribute("userData");
+                    loginForm = user.getEmail() + " " + user.getSaldo();
 
-                <form class="modal-content animate" action="shopcontroller">
-
-                    <input type="hidden" name="source" value="login"/>
-
-                    <div class="container">
-                    <span onclick="document.getElementById('id01').style.display='none'" class="close"
-                          title="Close Modal">&times;</span>
-
-                        <label for="email"><b>Email</b></label>
-                        <input type="text" placeholder="Enter Email" name="email">
-                        <label for="psw"><b>Password</b></label>
-                        <input type="password" placeholder="Enter Password" name="psw" required>
-                        <label>
-                            <input type="checkbox" checked="checked" name="remember"> Remember me
-                        </label>
-                        <button type="submit">Login</button>
-                        <button type="button" onclick="document.getElementById('id01').style.display='none'"
-                                class="cancelbtn">Cancel
-                        </button>
-
-                    </div>
-
-                </form>
-            </div>
-        </div>
-
-        <script>
-            // Get the modal
-            var modal = document.getElementById('id01');
-
-            // When the user clicks anywhere outside of the modal, close it
-            window.onclick = function (event) {
-                if (event.target == modal) {
-                    modal.style.display = "none";
-                }
+            } else {
+                loginForm = "<button onclick=\"document.getElementById('id01').style.display='block'\" style=\"width:auto;\">Login</button>\n" +
+                        "            \n" +
+                        "            <div id=\"id01\" class=\"modal\">\n" +
+                        "                \n" +
+                        "                <form class=\"modal-content animate\" action=\"shopcontroller\">\n" +
+                        "\n" +
+                        "                    <input type=\"hidden\" name=\"source\" value=\"login\"/>\n" +
+                        "\n" +
+                        "                    <div class=\"container\">\n" +
+                        "                    <span onclick=\"document.getElementById('id01').style.display='none'\" class=\"close\"\n" +
+                        "                          title=\"Close Modal\">&times;</span>\n" +
+                        "\n" +
+                        "                        <label for=\"email\"><b>Email</b></label>\n" +
+                        "                        <input type=\"text\" placeholder=\"Enter Email\" name=\"email\">\n" +
+                        "                        <label for=\"psw\"><b>Password</b></label>\n" +
+                        "                        <input type=\"password\" placeholder=\"Enter Password\" name=\"psw\" required>\n" +
+                        "                        <label>\n" +
+                        "                            <input type=\"checkbox\" checked=\"checked\" name=\"remember\"> Remember me\n" +
+                        "                        </label>\n" +
+                        "                        <button type=\"submit\">Login</button>\n" +
+                        "                        <button type=\"button\" onclick=\"document.getElementById('id01').style.display='none'\"\n" +
+                        "                                class=\"cancelbtn\">Cancel\n" +
+                        "                        </button>\n" +
+                        "\n" +
+                        "                    </div>\n" +
+                        "\n" +
+                        "                </form>\n" +
+                        "            </div>\n" +
+                        "        </div>\n" +
+                        "\n" +
+                        "        <script>\n" +
+                        "            // Get the modal\n" +
+                        "            var modal = document.getElementById('id01');\n" +
+                        "\n" +
+                        "            // When the user clicks anywhere outside of the modal, close it\n" +
+                        "            window.onclick = function (event) {\n" +
+                        "                if (event.target == modal) {\n" +
+                        "                    modal.style.display = \"none\";\n" +
+                        "                }\n" +
+                        "            }\n" +
+                        "        </script>";
             }
-        </script>
+            %>
+
+            <%=loginForm%>
 
 
         <a class="nav-link" href="shopcontroller?source=shopicon">
