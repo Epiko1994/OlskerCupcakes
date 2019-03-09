@@ -74,9 +74,10 @@
                                     "                        <input type=\"text\" placeholder=\"Enter Email\" name=\"email\">\n" +
                                     "                        <label for=\"psw\"><b>Password</b></label>\n" +
                                     "                        <input type=\"password\" placeholder=\"Enter Password\" name=\"psw\" required>\n" +
-                                    "                        <label>\n" +
-                                    "                            <input type=\"checkbox\" checked=\"checked\" name=\"remember\"> Remember me\n" +
-                                    "                        </label>\n" +
+                                    //"                        <label>\n" +
+                                    //"                            <input type=\"checkbox\" checked=\"checked\" name=\"remember\"> Remember me\n" +
+                                    //"                        </label>\n" +
+                                    "                           <br><br>" +
                                     "                        <button type=\"submit\">Login</button>\n" +
                                     "                        <button type=\"button\" onclick=\"document.getElementById('id01').style.display='none'\"\n" +
                                     "                                class=\"cancelbtn\">Cancel\n" +
