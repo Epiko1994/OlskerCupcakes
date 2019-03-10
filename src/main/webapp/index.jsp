@@ -22,6 +22,7 @@
             crossorigin="anonymous"></script>
 </head>
 <body>
+
 <div class="container">
 
     <img src="img/cupcakeBanner.png" alt="Logo" class="img-fluid"/>
@@ -87,7 +88,6 @@
                                     "\n" +
                                     "                </form>\n" +
                                     "            </div>\n" +
-                                    "        </div>\n" +
                                     "\n" +
                                     "        <script>\n" +
                                     "            // Get the modal\n" +
@@ -169,9 +169,7 @@
                 <div class="col-sm-3 dropdown_box">
                     <input type="submit" name="selectcupcake" value="Læg i kurv" class="btn btn-success form-control"/>
                 </div>
-
             </div>
-
         </form>
     </div>
 </div>
