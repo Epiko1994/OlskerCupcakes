@@ -122,7 +122,7 @@
         <h4>Øens bedste cupcakes. Vælg og bestil her:</h4>
 
         <%
-            HashMap<String, Integer> topHash = (HashMap<String, Integer>) request.getAttribute("topHash");
+            HashMap<String, Integer> topHash = (HashMap<String, Integer>)request.getAttribute("topHash");
             HashMap<String, Integer> baseHash = (HashMap<String, Integer>) request.getAttribute("baseHash");
 
             StringBuilder top = new StringBuilder();

@@ -50,6 +50,8 @@ public class ShopController extends HttpServlet {
 
         HashMap<String,User> userMap = userMapper.UserMap(userList);
 
+        HttpSession session = request.getSession();
+
         String source = request.getParameter("source");
 
         if (shopList.isEmpty()) {
@@ -68,7 +70,7 @@ public class ShopController extends HttpServlet {
 
                 shopList.add(new Cupcake(top,base,cupcakePrice,amount));
 
-                request.setAttribute("basket",shopList);
+                session.setAttribute("basket",shopList);
                 request.getRequestDispatcher("/indexController").forward(request, response);
 
                 break;
@@ -76,7 +78,7 @@ public class ShopController extends HttpServlet {
 
             case "login": {
                 boolean login = false;
-                HttpSession session = request.getSession();
+
                 String email = request.getParameter("email");
                 String psw = request.getParameter("psw");
                 try {
