@@ -91,14 +91,14 @@ public class ShopController extends HttpServlet {
                     session.setAttribute("userData",userMap.get(email));
                     session.setAttribute("login",true);
 
-                    request.getRequestDispatcher("index.jsp").forward(request, response);
+                    request.getRequestDispatcher("/indexController").forward(request, response);
                     break;
 
                 }else {
 
                     session.setAttribute("login",false);
 
-                    request.getRequestDispatcher("index.jsp").forward(request, response);
+                    request.getRequestDispatcher("/indexController").forward(request, response);
                     break;
                 }
             }

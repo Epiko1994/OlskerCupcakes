@@ -25,7 +25,6 @@ public class BaseTopMapper {
             int price = resultSet.getInt("base_price");
             baseList.put(name,price);
         }
-
         return baseList;
     }
 

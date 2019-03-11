@@ -39,7 +39,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mr-auto">
-                <a class="active" href="/indexController">Shop</a>
+                <a class="active" href="indexController">Shop</a>
                 <a href="servlet?destination=customers.jsp">Kunder</a>
                 <a href="servlet?destination=orders.jsp">Ordrer</a>
             </ul>

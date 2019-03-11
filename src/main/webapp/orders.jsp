@@ -50,7 +50,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mr-auto">
-                <a href="/indexController">Shop</a>
+                <a href="indexController">Shop</a>
                 <a href="servlet?destination=customers.jsp">Kunder</a>
                 <a class="active" href="servlet?destination=orders.jsp">Ordrer</a>
             </ul>
