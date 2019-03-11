@@ -130,7 +130,7 @@
 
             for (Entry<String, Integer> entry :
                     topHash.entrySet()) {
-                String template = "<option value=\"_name_\">_name_, _price_ ,-</option>";
+                String template = "<option value=\"_name_\">_name_ - _price_ ,-</option>";
                 template = template.replace("_name_", entry.getKey());
                 template = template.replace("_price_", entry.getValue().toString());
                 top.append(template);
@@ -138,7 +138,7 @@
 
             for (Entry<String, Integer> entry :
                     baseHash.entrySet()) {
-                String template = "<option value=\"_name_\">_name_, _price_ ,-</option>";
+                String template = "<option value=\"_name_\">_name_ - _price_ ,-</option>";
                 template = template.replace("_name_", entry.getKey());
                 template = template.replace("_price_", entry.getValue().toString());
                 base.append(template);
