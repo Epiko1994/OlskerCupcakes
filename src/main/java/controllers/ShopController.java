@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -48,7 +47,7 @@ public class ShopController extends HttpServlet {
             e.printStackTrace(); //TODO: Print something
         }
 
-        HashMap<String,User> userMap = userMapper.UserMap(userList);
+        HashMap<String, User> userMap = userMapper.UserMap(userList);
 
         HttpSession session = request.getSession();
 
@@ -58,7 +57,7 @@ public class ShopController extends HttpServlet {
             shopList = new ArrayList<>();
         }
 
-        switch (source){
+        switch (source) {
 
             case "addtocart": {
                 String base = request.getParameter("base");
@@ -66,11 +65,11 @@ public class ShopController extends HttpServlet {
                 int amount = Integer.parseInt(request.getParameter("amount"));
                 int basePrice = baseList.get(base);
                 int topPrice = topList.get(top);
-                int cupcakePrice = basePrice+topPrice;
+                int cupcakePrice = basePrice + topPrice;
 
-                shopList.add(new Cupcake(top,base,cupcakePrice,amount));
+                shopList.add(new Cupcake(top, base, cupcakePrice, amount));
 
-                session.setAttribute("basket",shopList);
+                session.setAttribute("basket", shopList);
                 request.getRequestDispatcher("/indexController").forward(request, response);
 
                 break;
@@ -82,44 +81,61 @@ public class ShopController extends HttpServlet {
                 String email = request.getParameter("email");
                 String psw = request.getParameter("psw");
                 try {
-                    login = loginMapper.loginCheck(email,psw);
+                    login = loginMapper.loginCheck(email, psw);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
 
-                if (login){
+                if (login) {
                     //request.setAttribute("userData",userMap.get(email));
-
-                    session.setAttribute("userData",userMap.get(email));
-                    session.setAttribute("login",true);
-
+                    session.setAttribute("userData", userMap.get(email));
+                    session.setAttribute("login", true);
                     request.getRequestDispatcher("/indexController").forward(request, response);
                     break;
 
-                }else {
-
-                    session.setAttribute("login",false);
-
+                } else {
+                    session.setAttribute("login", false);
                     request.getRequestDispatcher("/indexController").forward(request, response);
                     break;
                 }
             }
 
+            //adds user to the database if it doesn't exist.
+            case "create": {
+                boolean login = false;
+                String email = request.getParameter("email");
+                String psw = request.getParameter("psw");
+                try {
+                    login = loginMapper.loginCheck(email, psw);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                if (login) {
+                    //todo send en fejl videre
+                    request.setAttribute("message", "FUCK");
+                    request.getRequestDispatcher("/indexController").forward(request, response);
+                    break;
+
+                } else {
+                    User user = UserMapper.createUser(email, psw);
+                    userList.add(user);
+                    userMap.put(email, user);
+                    session.setAttribute("userData", userMap.get(email));
+                    session.setAttribute("login", true);
+                    request.getRequestDispatcher("/indexController").forward(request, response);
+                    break;
+                }
+            }
             case "shopicon": {
                 if (shopList.isEmpty()) {
                     request.setAttribute("basket", null);
                     request.getRequestDispatcher("shoppingBasket.jsp").forward(request, response);
                     break;
                 }
-
                 request.setAttribute("basket", shopList);
                 request.getRequestDispatcher("shoppingBasket.jsp").forward(request, response);
-
                 break;
             }
-
-            //case "": {
-
         }
     }
 }

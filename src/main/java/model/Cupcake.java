@@ -18,31 +18,16 @@ public class Cupcake {
         return top;
     }
 
-    public void setTop(String top) {
-        this.top = top;
-    }
-
     public String getBase() {
         return base;
-    }
-
-    public void setBase(String base) {
-        this.base = base;
     }
 
     public int getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
     public int getAmount() {
         return amount;
     }
 
-    public void setAmount(int amount) {
-        this.amount = amount;
-    }
 }

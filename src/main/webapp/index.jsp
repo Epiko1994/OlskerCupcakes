@@ -1,7 +1,6 @@
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="java.util.Map.Entry" %>
-<%@ page import="java.util.HashMap" %>
 <%@ page import="model.User" %>
+<%@ page import="java.util.HashMap" %>
+<%@ page import="java.util.Map.Entry" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -46,14 +45,13 @@
             </ul>
 
             <!-- Login popup -->
-
             <%
                 String loginForm;
                 if (session.getAttribute("login") != null && (boolean) session.getAttribute("login")) {
                     User user = (User) session.getAttribute("userData");
                     loginForm =
                             "<div class=\"html-editor-align-right\">\n" +
-                                    "                <a href=\"userAccount.jsp\">" + user.getEmail() + "</a>\n" +
+                                    "                <a href=\"customerPageController?userid=" + user.getUserID() + "\">" + user.getEmail() + "</a>\n" +
                                     "                <a href=\"userPurchases.jsp\">" + user.getSaldo() + ",-</a>\n" +
                                     "            </div>" +
                                     "<form method=\"post\" action=\"logout.jsp\">\n" +
@@ -78,17 +76,13 @@
                                     "                        <input type=\"text\" placeholder=\"Enter Email\" name=\"email\">\n" +
                                     "                        <label for=\"psw\"><b>Password</b></label>\n" +
                                     "                        <input type=\"password\" placeholder=\"Enter Password\" name=\"psw\" required>\n" +
-                                    //"                        <label>\n" +
-                                    //"                            <input type=\"checkbox\" checked=\"checked\" name=\"remember\"> Remember me\n" +
-                                    //"                        </label>\n" +
                                     "                           <br><br>" +
                                     "                        <button type=\"submit\">Login</button>\n" +
                                     "                        <button type=\"button\" onclick=\"document.getElementById('id01').style.display='none'\"\n" +
                                     "                                class=\"cancelbtn\">Cancel\n" +
                                     "                        </button>\n" +
-                                    "\n" +
+                                    "                        <!-- Button to open the create user modal -->\n" +
                                     "                    </div>\n" +
-                                    "\n" +
                                     "                </form>\n" +
                                     "            </div>\n" +
                                     "\n" +
@@ -102,12 +96,48 @@
                                     "                    modal.style.display = \"none\";\n" +
                                     "                }\n" +
                                     "            }\n" +
-                                    "        </script>";
+                                    "        </script>" +
+                                    "<button onclick=\"document.getElementById('id02').style.display='block'\" style=\"width:auto;\">Ny bruger</button>\n" +
+                                    "            <!-- The Modal (contains the Sign Up form) -->\n" +
+                                    "            <div id=\"id02\" class=\"modal\">\n" +
+                                    "                <span onclick=\"document.getElementById('id02').style.display='none'\" class=\"close\" title=\"Close Modal\">times;</span>\n" +
+                                    "                <form class=\"modal-content\" action=\"shopcontroller\">\n" +
+                                    "                    <input type=\"hidden\" name=\"source\" value=\"create\"/>\n" +
+                                    "                    <div class=\"container\">\n" +
+                                    "                        <h1>Sign Up</h1>\n" +
+                                    "                        <p>Please fill in this form to create an account.</p>\n" +
+                                    "                        <hr>\n" +
+                                    "                        <label for=\"email\"><b>Email</b></label>\n" +
+                                    "                        <input type=\"text\" placeholder=\"Enter Email\" name=\"email\" required>\n" +
+                                    "\n" +
+                                    "                        <label for=\"psw\"><b>Password</b></label>\n" +
+                                    "                        <input type=\"password\" placeholder=\"Enter Password\" name=\"psw\" required>\n" +
+                                    "\n" +
+                                    "                        <label for=\"psw-repeat\"><b>Repeat Password</b></label>\n" +
+                                    "                        <input type=\"password\" placeholder=\"Repeat Password\" name=\"psw-repeat\" required>\n" +
+                                    "\n" +
+                                    "                        <div class=\"clearfix\">\n" +
+                                    "                            <button type=\"button\" onclick=\"document.getElementById('id01').style.display='none'\" class=\"cancelbtn\">Cancel</button>\n" +
+                                    "                            <button type=\"submit\" class=\"signup\">Sign Up</button>\n" +
+                                    "                        </div>\n" +
+                                    "                    </div>\n" +
+                                    "                </form>\n" +
+                                    "            </div>\n" +
+                                    "            <script>\n" +
+                                    "                // Get the modal\n" +
+                                    "                var modal = document.getElementById('id02');\n" +
+                                    "\n" +
+                                    "                // When the user clicks anywhere outside of the modal, close it\n" +
+                                    "                window.onclick = function(event) {\n" +
+                                    "                    if (event.target == modal) {\n" +
+                                    "                        modal.style.display = \"none\";\n" +
+                                    "                    }\n" +
+                                    "                }\n" +
+                                    "            </script>";
                 }
             %>
 
             <%=loginForm%>
-
 
             <a class="nav-link" href="shopcontroller?source=shopicon">
                 <img src="img/shopping-basket.svg" width="30" height="30" class="d-inline-block align-top"
@@ -122,7 +152,7 @@
         <h4>Øens bedste cupcakes. Vælg og bestil her:</h4>
 
         <%
-            HashMap<String, Integer> topHash = (HashMap<String, Integer>)request.getAttribute("topHash");
+            HashMap<String, Integer> topHash = (HashMap<String, Integer>) request.getAttribute("topHash");
             HashMap<String, Integer> baseHash = (HashMap<String, Integer>) request.getAttribute("baseHash");
 
             StringBuilder top = new StringBuilder();
@@ -130,7 +160,7 @@
 
             for (Entry<String, Integer> entry :
                     topHash.entrySet()) {
-                String template = "<option value=\"_name_\">_name_ - _price_ ,-</option>";
+                String template = "<option value=\"_name_\">_name_: _price_ ,-</option>";
                 template = template.replace("_name_", entry.getKey());
                 template = template.replace("_price_", entry.getValue().toString());
                 top.append(template);
@@ -138,7 +168,7 @@
 
             for (Entry<String, Integer> entry :
                     baseHash.entrySet()) {
-                String template = "<option value=\"_name_\">_name_ - _price_ ,-</option>";
+                String template = "<option value=\"_name_\">_name_: _price_ ,-</option>";
                 template = template.replace("_name_", entry.getKey());
                 template = template.replace("_price_", entry.getValue().toString());
                 base.append(template);
