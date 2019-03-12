@@ -59,7 +59,7 @@
                     loginForm =
                             "<div class=\"html-editor-align-right\">\n" +
                                     "                <a href=\"userAccount.jsp\">" + user.getEmail() + "</a>\n" +
-                                    "                <a href=\"userPurchases.jsp\">" + user.getSaldo() + ",-</a>\n" +
+                                    "                <a href=\"userPurchases.jsp\">" + user.getBalance() + ",-</a>\n" +
                                     "            </div>" +
                                     "<form method=\"post\" action=\"logout.jsp\">\n" +
                                     "                <button class=\"cancelbtn\">Logout</button>\n" +

@@ -51,5 +51,14 @@ public class OrderMapper {
             ps.setInt(4, cupcake.getAmount());
             ps.executeUpdate();
         }
+
+        connection = ConnnectionConfiguration.getConnection();
+        ps = connection.prepareStatement("UPDATE user" +
+                "SET balance = ?" +
+                "WHERE user_id = ?" +
+                ";");
+        ps.setInt(1,user.getBalance()-total);
+        ps.setInt(2, user.getUserID());
+        ps.executeUpdate();
     }
 }

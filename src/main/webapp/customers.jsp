@@ -56,7 +56,7 @@
                     loginForm =
                             "<div class=\"html-editor-align-right\">\n" +
                                     "                <a href=\"userAccount.jsp\">" + user.getEmail() + "</a>\n" +
-                                    "                <a href=\"userPurchases.jsp\">" + user.getSaldo() + ",-</a>\n" +
+                                    "                <a href=\"userPurchases.jsp\">" + user.getBalance() + ",-</a>\n" +
                                     "            </div>" +
                                     "<form method=\"post\" action=\"logout.jsp\">\n" +
                                     "                <button class=\"cancelbtn\">Logout</button>\n" +
@@ -133,7 +133,7 @@
                     "  </tr>";
             template = template.replace("_email_", user.getEmail());
             template = template.replace("_userid_", Integer.toString(user.getUserID()));
-            template = template.replace("_balance_", Integer.toString(user.getSaldo()));
+            template = template.replace("_balance_", Integer.toString(user.getBalance()));
             stringBuilder.append(template);
         }
     %>

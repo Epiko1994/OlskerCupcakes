@@ -6,14 +6,14 @@ public class User {
 
     private int userID;
     private String email;
-    private int saldo;
+    private int balance;
     private boolean isAdmin;
     private ArrayList<Order> orders;
 
-    public User(int userID, String email, int saldo, boolean isAdmin) {
+    public User(int userID, String email, int balance, boolean isAdmin) {
         this.userID = userID;
         this.email = email;
-        this.saldo = saldo;
+        this.balance = balance;
         this.isAdmin = isAdmin;
         this.orders = new ArrayList<>();
     }
@@ -31,8 +31,8 @@ public class User {
         return email;
     }
 
-    public int getSaldo() {
-        return saldo;
+    public int getBalance() {
+        return balance;
     }
 
     public boolean isAdmin() {
