@@ -105,16 +105,29 @@ public class ShopController extends HttpServlet {
                 }
             }
 
+            case "logout": {
+                if (!shopList.isEmpty()) {
+                    shopList.clear();
+                }
+                session.invalidate();
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+                break;
+            }
+
             case "shopicon": {
                 if (shopList.isEmpty()) {
-                    request.setAttribute("basket", null);
+                    session.setAttribute("basket", null);
                     request.getRequestDispatcher("shoppingBasket.jsp").forward(request, response);
                     break;
                 }
 
-                request.setAttribute("basket", shopList);
+                session.setAttribute("basket", shopList);
                 request.getRequestDispatcher("shoppingBasket.jsp").forward(request, response);
 
+                break;
+            }
+            default: {
+                request.getRequestDispatcher("index.jsp").forward(request, response);
                 break;
             }
 

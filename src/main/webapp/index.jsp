@@ -128,24 +128,26 @@
             StringBuilder top = new StringBuilder();
             StringBuilder base = new StringBuilder();
 
-            for (Entry<String, Integer> entry :
-                    topHash.entrySet()) {
-                String template = "<option value=\"_name_\">_name_ - _price_ ,-</option>";
-                template = template.replace("_name_", entry.getKey());
-                template = template.replace("_price_", entry.getValue().toString());
-                top.append(template);
-            }
+            if (topHash != null && baseHash != null) {
+                for (Entry<String, Integer> entry :
+                        topHash.entrySet()) {
+                    String template = "<option value=\"_name_\">_name_ - _price_ ,-</option>";
+                    template = template.replace("_name_", entry.getKey());
+                    template = template.replace("_price_", entry.getValue().toString());
+                    top.append(template);
+                }
 
-            for (Entry<String, Integer> entry :
-                    baseHash.entrySet()) {
-                String template = "<option value=\"_name_\">_name_ - _price_ ,-</option>";
-                template = template.replace("_name_", entry.getKey());
-                template = template.replace("_price_", entry.getValue().toString());
-                base.append(template);
+                for (Entry<String, Integer> entry :
+                        baseHash.entrySet()) {
+                    String template = "<option value=\"_name_\">_name_ - _price_ ,-</option>";
+                    template = template.replace("_name_", entry.getKey());
+                    template = template.replace("_price_", entry.getValue().toString());
+                    base.append(template);
+                }
+            }else {
+                request.getRequestDispatcher("/indexController").forward(request, response);
             }
-
         %>
-
 
         <form action="shopcontroller" method="post">
 

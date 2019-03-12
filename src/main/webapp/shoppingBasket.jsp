@@ -120,12 +120,11 @@
     </div>
 
     <%
-        StringBuilder stringBuilder = new StringBuilder();
-        ArrayList<Cupcake> shopList;
         int totalPrice = 0;
         int totalCupcakes = 0;
-        if (request.getAttribute("basket") != null) {
-            shopList = (ArrayList<Cupcake>) request.getAttribute("basket");
+        StringBuilder stringBuilder;
+        if (session.getAttribute("basket") != null) {
+            ArrayList<Cupcake> shopList = (ArrayList<Cupcake>) session.getAttribute("basket");
             stringBuilder = new StringBuilder();
             for (Cupcake cupcake : shopList) {
 
@@ -146,6 +145,7 @@
                 totalCupcakes = totalCupcakes + cupcake.getAmount();
             }
         } else {
+            stringBuilder = new StringBuilder();
             stringBuilder.append("<p>Din indkøbskurv er tom!</p>");
         }
 
