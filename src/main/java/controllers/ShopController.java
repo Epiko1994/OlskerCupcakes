@@ -63,9 +63,10 @@ public class ShopController extends HttpServlet {
         switch (source) {
 
             case "addtocart": {
-                if (request.getParameter("base") == null || request.getParameter("top") == null || request.getParameter("amount") == null)
+                if (request.getParameter("base") == null || request.getParameter("top") == null || request.getParameter("amount") == null) {
                     request.getRequestDispatcher("/indexController").forward(request, response);
-                     else{
+                    break;
+                } else {
 
                     String base = request.getParameter("base");
                     String top = request.getParameter("top");
@@ -155,7 +156,7 @@ public class ShopController extends HttpServlet {
                 break;
             }
 
-            case "order":
+            case "order": {
                 OrderMapper orderMapper = new OrderMapper();
                 ArrayList<Cupcake> shopList = (ArrayList<Cupcake>) session.getAttribute("basket");
                 User user = (User) session.getAttribute("userData");
@@ -169,16 +170,16 @@ public class ShopController extends HttpServlet {
                 request.getRequestDispatcher("/indexController").forward(request, response);
                 break;
             }
-            default: {
-                request.getRequestDispatcher("index.jsp").forward(request, response);
-                break;
-            }
-
             case "deleteOrder": {
                 int deleteNumber = Integer.parseInt(request.getParameter("orderRow"));
                 shopList.remove(deleteNumber);
                 request.setAttribute("basket", shopList);
                 request.getRequestDispatcher("shoppingBasket.jsp").forward(request, response);
+                break;
+            }
+
+            default: {
+                request.getRequestDispatcher("index.jsp").forward(request, response);
                 break;
             }
 

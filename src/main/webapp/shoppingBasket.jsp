@@ -139,7 +139,7 @@
                         "    <td style=\"text-align: right\">_amount_ stk.</td> \n" +
                         "    <td style=\"text-align: right\">_price_ ,-</td>\n" +
                         "    <td style=\"text-align: right\">_total_ ,-</td>\n" +
-                        "    <td style=\"width: 75.8px\"><form style=\"margin-block-end: 0; width: 85px; text-align: right; \"action=\"/shopcontroller\" method=\"post\">\n" +
+                        "    <td style=\"width: 75.8px\"><form style=\"margin-block-end: 0; width: 85px; text-align: right; \"action=\"shopcontroller\" method=\"post\">\n" +
                         "            <input type=\"hidden\" name=\"source\" value=\"deleteOrder\"/>\n" +
                         "\n" +
                         "            <button type=\"submit\" name=\"orderRow\" value=\""+x+"\" class=\"btn btn-danger\">Fjern</input>\n" +
