@@ -13,10 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+@SuppressWarnings("unchecked")
 @WebServlet(name = "ShopController", urlPatterns = "/shopcontroller")
 public class ShopController extends HttpServlet {
 
@@ -145,9 +145,18 @@ public class ShopController extends HttpServlet {
 
                 session.setAttribute("basket", shopList);
                 request.getRequestDispatcher("shoppingBasket.jsp").forward(request, response);
-
                 break;
             }
+
+            case "order":
+                ArrayList<Cupcake> shopList = (ArrayList<Cupcake>) session.getAttribute("basket");
+                User user = (User) session.getAttribute("userData");
+                //mappers.insertOrder(user, shopList);
+                shopList.clear();
+                session.setAttribute("basket", shopList);
+                request.getRequestDispatcher("/indexController");
+                break;
+
             default: {
                 request.getRequestDispatcher("index.jsp").forward(request, response);
                 break;

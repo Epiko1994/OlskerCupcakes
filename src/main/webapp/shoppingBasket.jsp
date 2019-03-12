@@ -8,6 +8,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
 <head>
     <title>Indkøbskurv</title>
@@ -111,7 +112,7 @@
             <%=loginForm%>
 
 
-            <a class="nav-link" href="shopcontroller?source=shopicon">
+            <a style="size" class="nav-link" href="shopcontroller?source=shopicon">
                 <img src="img/shopping-basket.svg" width="30" height="30" class="d-inline-block align-top"
                      alt="logo">
             </a>
@@ -170,6 +171,7 @@
                 <td style="text-align: right"><%=totalPrice%> ,-</td>
             </tr>
         </table>
+        <button type="button" class="btn btn-primary" onclick="window.location.href = '/shopcontroller';" value="order">Bestil cupcakes</button>
     </div>
 
 </div>
