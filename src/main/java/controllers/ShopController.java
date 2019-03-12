@@ -63,6 +63,7 @@ public class ShopController extends HttpServlet {
         switch (source) {
 
             case "addtocart": {
+
                 String base = request.getParameter("base");
                 String top = request.getParameter("top");
                 int amount = Integer.parseInt(request.getParameter("amount"));
