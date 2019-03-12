@@ -64,7 +64,7 @@
 
                 } else {
                     loginForm =
-                            "<button onclick=\"document.getElementById('id01').style.display='block'\" style=\"width:auto;\">Login</button>\n" +
+                            "<button onclick=\"document.getElementById('id01').style.display='block'\" style=\"width:auto;border: 1px solid green;\">Login</button>\n" +
                                     "            \n" +
                                     "            <div id=\"id01\" class=\"modal\">\n" +
                                     "                \n" +

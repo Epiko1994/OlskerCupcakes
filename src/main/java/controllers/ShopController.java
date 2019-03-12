@@ -63,20 +63,24 @@ public class ShopController extends HttpServlet {
         switch (source) {
 
             case "addtocart": {
+                if (request.getParameter("base") == null || request.getParameter("top") == null || request.getParameter("amount") == null)
+                    request.getRequestDispatcher("/indexController").forward(request, response);
+                     else{
 
-                String base = request.getParameter("base");
-                String top = request.getParameter("top");
-                int amount = Integer.parseInt(request.getParameter("amount"));
-                int basePrice = baseList.get(base);
-                int topPrice = topList.get(top);
-                int cupcakePrice = basePrice + topPrice;
+                    String base = request.getParameter("base");
+                    String top = request.getParameter("top");
+                    int amount = Integer.parseInt(request.getParameter("amount"));
+                    int basePrice = baseList.get(base);
+                    int topPrice = topList.get(top);
+                    int cupcakePrice = basePrice + topPrice;
 
-                shopList.add(new Cupcake(top, base, cupcakePrice, amount));
+                    shopList.add(new Cupcake(top, base, cupcakePrice, amount));
 
-                session.setAttribute("basket", shopList);
-                request.getRequestDispatcher("/indexController").forward(request, response);
+                    session.setAttribute("basket", shopList);
+                    request.getRequestDispatcher("/indexController").forward(request, response);
 
-                break;
+                    break;
+                }
             }
 
             case "login": {
@@ -164,11 +168,20 @@ public class ShopController extends HttpServlet {
                 session.setAttribute("basket", shopList);
                 request.getRequestDispatcher("/indexController").forward(request, response);
                 break;
-
+            }
             default: {
                 request.getRequestDispatcher("index.jsp").forward(request, response);
                 break;
             }
+
+            case "deleteOrder": {
+                int deleteNumber = Integer.parseInt(request.getParameter("orderRow"));
+                shopList.remove(deleteNumber);
+                request.setAttribute("basket", shopList);
+                request.getRequestDispatcher("shoppingBasket.jsp").forward(request, response);
+                break;
+            }
+
         }
     }
 }
