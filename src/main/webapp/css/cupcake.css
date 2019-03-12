@@ -97,6 +97,8 @@ button.deletebtn {
     margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
     border: 1px solid #888;
     max-width: 60%; /* Could be more or less, depending on screen size */
+    max-height: 60%!important;
+    overflow: scroll!important;
     padding-top: 25px;
     padding-bottom: 25px;
 }
