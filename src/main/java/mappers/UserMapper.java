@@ -12,6 +12,7 @@ import java.util.HashMap;
 public class UserMapper {
 
 
+    //creates user
     public static User createUser(String email, String psw) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
