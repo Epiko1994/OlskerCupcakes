@@ -25,7 +25,7 @@ public class OrderMapper {
         int total = 0;
 
         for (Cupcake cupcake : shoplist) {
-            total = total + cupcake.getPrice();
+            total = total + (cupcake.getPrice()*cupcake.getAmount());
         }
 
         connection = ConnnectionConfiguration.getConnection();
@@ -53,8 +53,8 @@ public class OrderMapper {
         }
 
         connection = ConnnectionConfiguration.getConnection();
-        ps = connection.prepareStatement("UPDATE user" +
-                "SET balance = ?" +
+        ps = connection.prepareStatement("UPDATE user " +
+                "SET balance = ? " +
                 "WHERE user_id = ?" +
                 ";");
         ps.setInt(1,user.getBalance()-total);
