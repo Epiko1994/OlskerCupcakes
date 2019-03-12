@@ -6,10 +6,7 @@ import model.Topping;
 import model.User;
 import util.ConnnectionConfiguration;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -34,9 +31,7 @@ public class OrderMapper {
         connection = ConnnectionConfiguration.getConnection();
         ps = connection.prepareStatement("INSERT INTO Cupcake.orders\n" +
                 "(user_id,total)" +
-                "VALUES (?, ?)" +
-                ", Statement.RETURN_GENERATED_KEYS" +
-                ";");
+                "VALUES (?, ?)", Statement.RETURN_GENERATED_KEYS);
         ps.setInt(1, user.getUserID());
         ps.setInt(2, total);
         ps.executeUpdate();

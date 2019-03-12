@@ -112,7 +112,7 @@
             <%=loginForm%>
 
 
-            <a style="size" class="nav-link" href="shopcontroller?source=shopicon">
+            <a class="nav-link" href="shopcontroller?source=shopicon">
                 <img src="img/shopping-basket.svg" width="30" height="30" class="d-inline-block align-top"
                      alt="logo">
             </a>
@@ -171,7 +171,7 @@
                 <td style="text-align: right"><%=totalPrice%> ,-</td>
             </tr>
         </table>
-        <button type="button" class="btn btn-primary" onclick="window.location.href = '/shopcontroller';" value="order">Bestil cupcakes</button>
+        <button type="button" class="btn btn-primary" onclick="window.location.href = 'shopcontroller?source=order';" value="order">Bestil cupcakes</button>
     </div>
 
 </div>
