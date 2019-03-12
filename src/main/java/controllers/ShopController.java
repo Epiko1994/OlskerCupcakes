@@ -58,14 +58,12 @@ public class ShopController extends HttpServlet {
             shopList = new ArrayList<>();
         }
 
-        switch (source) {
+        switch (source){
 
             case "addtocart": {
-                //if (shopList == null)
-
-
-                     //else{
-
+                if (request.getParameter("base") == null || request.getParameter("top") == null || request.getParameter("amount") == null)
+                    request.getRequestDispatcher("/indexController").forward(request, response);
+                     else{
 
                     String base = request.getParameter("base");
                     String top = request.getParameter("top");
@@ -80,8 +78,7 @@ public class ShopController extends HttpServlet {
                     request.getRequestDispatcher("/indexController").forward(request, response);
 
                     break;
-                //}
-
+                }
             }
 
             case "login": {
