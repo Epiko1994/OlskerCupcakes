@@ -50,7 +50,6 @@
             </ul>
 
             <!-- Login popup -->
-
             <%
                 String loginForm;
                 if (session.getAttribute("login") != null && (boolean) session.getAttribute("login")) {
@@ -127,6 +126,7 @@
         int x = 0;
         String listElement;
         StringBuilder stringBuilder;
+        String button = "";
         if (session.getAttribute("basket") != null) {
             ArrayList<Cupcake> shopList = (ArrayList<Cupcake>) session.getAttribute("basket");
             stringBuilder = new StringBuilder();
@@ -156,15 +156,32 @@
                 totalCupcakes = totalCupcakes + cupcake.getAmount();
 
                 x++;
+                button = "<button type=\"button\" class=\"btn btn-primary\" onclick=\"window.location.href = 'shopcontroller?source=order';\" value=\"order\">Bestil cupcakes</button>";
             }
         } else {
             stringBuilder = new StringBuilder();
             stringBuilder.append("<p>Din indkøbskurv er tom!</p>");
+            button = "<button type=\"button\" class=\"btn btn-primary\" onclick=\"window.location.href = 'shopcontroller?source=order';\" value=\"order\" disabled>Bestil cupcakes</button>";
         }
 
     %>
+    <!-- ALARM -->
+    <%  String besked = (String) request.getAttribute("message");
+        String status = (String) request.getAttribute("status");
+        if (besked != null && status != null) {
+            String alert = "";
+            if (status.equals("ok")) {
+                alert = "<div class=\"alert alert-success\">_message_</div>";
+            } else {
+                alert = "<div class=\"alert alert-danger\">_message_</div>";
+            }
+            alert = alert.replace("_message_", besked);
+            out.println(alert);
+        }
+    %>
 
     <div class="container-fluid">
+        <h3>Indkøbskurv</h3>
         <table class='table table-condensed table-striped table-hover'>
             <tr>
                 <th>Bund</th>
@@ -185,14 +202,10 @@
                 <td></td>
             </tr>
             <tr>
-
             </tr>
         </table>
-        <button type="button" class="btn btn-primary" onclick="window.location.href = 'shopcontroller?source=order';" value="order">Bestil cupcakes</button>
+        <%=button%>
     </div>
-
-
-
 </div>
 </body>
 </html>

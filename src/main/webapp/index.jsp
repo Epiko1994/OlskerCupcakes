@@ -61,7 +61,6 @@
                                     "<form method=\"post\" action=\"logout.jsp\">\n" +
                                     "                <button class=\"cancelbtn\">Logout</button>\n" +
                                     "            </form>";
-
                 } else {
                     loginForm =
                             "<button onclick=\"document.getElementById('id01').style.display='block'\" style=\"width:auto; border: 1px solid green;\">Login</button>\n" +
@@ -150,6 +149,21 @@
         </div>
 
     </div>
+
+    <!-- ALARM -->
+    <%  String besked = (String) request.getAttribute("message");
+        String status = (String) request.getAttribute("status");
+        if (besked != null && status != null) {
+            String alert = "";
+            if (status.equals("ok")) {
+                alert = "<div class=\"alert alert-success\">_message_</div>";
+            } else {
+                alert = "<div class=\"alert alert-danger\">_message_</div>";
+            }
+            alert = alert.replace("_message_", besked);
+            out.println(alert);
+        }
+    %>
 
     <div class="jumbotron">
         <h1>Velkommen ombord</h1>

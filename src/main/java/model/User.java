@@ -43,4 +43,7 @@ public class User {
         return orders;
     }
 
+    public void setBalance(int balance) {
+        this.balance = balance;
+    }
 }

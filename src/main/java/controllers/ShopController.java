@@ -64,6 +64,8 @@ public class ShopController extends HttpServlet {
 
             case "addtocart": {
                 if (request.getParameter("base") == null || request.getParameter("top") == null || request.getParameter("amount") == null) {
+                    request.setAttribute("status", "ikke ok");
+                    request.setAttribute("message", "Vælg venligst top, bund og antal");
                     request.getRequestDispatcher("/indexController").forward(request, response);
                     break;
                 } else {
@@ -78,6 +80,8 @@ public class ShopController extends HttpServlet {
                     shopList.add(new Cupcake(top, base, cupcakePrice, amount));
 
                     session.setAttribute("basket", shopList);
+                    request.setAttribute("status", "ok");
+                    request.setAttribute("message", amount + " stk " + base + " " + top + " tilføjet til kurv");
                     request.getRequestDispatcher("/indexController").forward(request, response);
 
                     break;
@@ -99,11 +103,15 @@ public class ShopController extends HttpServlet {
                     //request.setAttribute("userData",userMap.get(email));
                     session.setAttribute("userData", userMap.get(email));
                     session.setAttribute("login", true);
+                    request.setAttribute("status", "ok");
+                    request.setAttribute("message", "Login gennemført");
                     request.getRequestDispatcher("/indexController").forward(request, response);
                     break;
 
                 } else {
                     session.setAttribute("login", false);
+                    request.setAttribute("status", "ikke ok");
+                    request.setAttribute("message", "Brugeren kan ikke findes");
                     request.getRequestDispatcher("/indexController").forward(request, response);
                     break;
                 }
@@ -121,7 +129,8 @@ public class ShopController extends HttpServlet {
                 }
                 if (login) {
                     //todo send en fejl videre
-                    request.setAttribute("message", "FUCK");
+                    request.setAttribute("status", "ikke ok");
+                    request.setAttribute("message", "Denne bruger findes allerede");
                     request.getRequestDispatcher("/indexController").forward(request, response);
                     break;
 
@@ -131,6 +140,8 @@ public class ShopController extends HttpServlet {
                     userMap.put(email, user);
                     session.setAttribute("userData", userMap.get(email));
                     session.setAttribute("login", true);
+                    request.setAttribute("status", "ok");
+                    request.setAttribute("message", "Bruger oprettet");
                     request.getRequestDispatcher("/indexController").forward(request, response);
                     break;
                 }
@@ -140,6 +151,8 @@ public class ShopController extends HttpServlet {
                     shopList.clear();
                 }
                 session.invalidate();
+                request.setAttribute("status", "ok");
+                request.setAttribute("message", "Du er nu logget ud");
                 request.getRequestDispatcher("index.jsp").forward(request, response);
                 break;
             }
@@ -157,23 +170,49 @@ public class ShopController extends HttpServlet {
             }
 
             case "order": {
-                OrderMapper orderMapper = new OrderMapper();
-                ArrayList<Cupcake> shopList = (ArrayList<Cupcake>) session.getAttribute("basket");
-                User user = (User) session.getAttribute("userData");
-                try {
-                    orderMapper.insertOrder(user, shopList);
-                } catch (SQLException | ClassNotFoundException e) {
-                    e.printStackTrace();
+                if (session.getAttribute("basket") != null) {
+                    if (session.getAttribute("login") != null) {
+                        if ((boolean) session.getAttribute("login")) {
+                            OrderMapper orderMapper = new OrderMapper();
+                            ArrayList<Cupcake> shopList = (ArrayList<Cupcake>) session.getAttribute("basket");
+                            User user = (User) session.getAttribute("userData");
+                            try {
+                                orderMapper.insertOrder(user, shopList);
+                            } catch (SQLException | ClassNotFoundException e) {
+                                e.printStackTrace();
+                            }
+                            shopList.clear();
+                            session.setAttribute("basket", shopList);
+                            request.setAttribute("status", "ok");
+                            request.setAttribute("message", "Bestilling gennemført");
+                            userMap = userMapper.UserMap(userList);
+                            session.setAttribute("userData", userMap.get(user.getEmail()));
+                            request.getRequestDispatcher("/indexController").forward(request, response);
+                            break;
+                        } else {
+                            request.setAttribute("status", "ikke ok");
+                            request.setAttribute("message", "Bestilling ikke gennemført - log venligst ind for at bestille");
+                            request.getRequestDispatcher("shoppingBasket.jsp").forward(request, response);
+                            break;
+                        }
+                    }
+                    request.setAttribute("status", "ikke ok");
+                    request.setAttribute("message", "Bestilling ikke gennemført - log venligst ind for at bestille");
+                    request.getRequestDispatcher("shoppingBasket.jsp").forward(request, response);
+                    break;
                 }
-                shopList.clear();
-                session.setAttribute("basket", shopList);
-                request.getRequestDispatcher("/indexController").forward(request, response);
+                request.setAttribute("status", "ikke ok");
+                request.setAttribute("message", "Bestilling ikke gennemført - din kurv er tom!");
+                request.getRequestDispatcher("shoppingBasket.jsp").forward(request, response);
                 break;
             }
+
             case "deleteOrder": {
                 int deleteNumber = Integer.parseInt(request.getParameter("orderRow"));
                 shopList.remove(deleteNumber);
                 request.setAttribute("basket", shopList);
+                request.setAttribute("status", "ok");
+                request.setAttribute("message", "Ordre fjernet");
                 request.getRequestDispatcher("shoppingBasket.jsp").forward(request, response);
                 break;
             }
@@ -181,7 +220,6 @@ public class ShopController extends HttpServlet {
                 request.getRequestDispatcher("index.jsp").forward(request, response);
                 break;
             }
-
 
 
         }
