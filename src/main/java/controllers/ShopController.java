@@ -2,6 +2,7 @@ package controllers;
 
 import mappers.BaseTopMapper;
 import mappers.LoginMapper;
+import mappers.OrderMapper;
 import mappers.UserMapper;
 import model.Cupcake;
 import model.User;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -149,12 +151,17 @@ public class ShopController extends HttpServlet {
             }
 
             case "order":
+                OrderMapper orderMapper = new OrderMapper();
                 ArrayList<Cupcake> shopList = (ArrayList<Cupcake>) session.getAttribute("basket");
                 User user = (User) session.getAttribute("userData");
-                //mappers.insertOrder(user, shopList);
+                try {
+                    orderMapper.insertOrder(user, shopList);
+                } catch (SQLException | ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
                 shopList.clear();
                 session.setAttribute("basket", shopList);
-                request.getRequestDispatcher("/indexController");
+                request.getRequestDispatcher("/indexController").forward(request, response);
                 break;
 
             default: {
