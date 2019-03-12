@@ -11,7 +11,7 @@
 <html>
 <head>
     <title>Indkøbskurv</title>
-    <link href="css/cupcake.css" rel="stylesheet" type="text/css">
+
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -26,6 +26,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
+    <link href="css/cupcake.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <div class="container">
@@ -64,7 +65,7 @@
 
                 } else {
                     loginForm =
-                            "<button onclick=\"document.getElementById('id01').style.display='block'\" style=\"width:auto;\">Login</button>\n" +
+                            "<button onclick=\"document.getElementById('id01').style.display='block'\" style=\"width:auto;border: 1px solid green;\">Login</button>\n" +
                                     "            \n" +
                                     "            <div id=\"id01\" class=\"modal\">\n" +
                                     "                \n" +
@@ -137,10 +138,10 @@
                         "    <td style=\"text-align: right\">_amount_ stk.</td> \n" +
                         "    <td style=\"text-align: right\">_price_ ,-</td>\n" +
                         "    <td style=\"text-align: right\">_total_ ,-</td>\n" +
-                        "    <td><form action=\"/shopcontroller\" method=\"post\">\n" +
+                        "    <td style=\"width: 75.8px\"><form style=\"margin-block-end: 0; width: 85px; text-align: right; \"action=\"/shopcontroller\" method=\"post\">\n" +
                         "            <input type=\"hidden\" name=\"source\" value=\"deleteOrder\"/>\n" +
                         "\n" +
-                        "            <button type=\"submit\" name=\"orderRow\" value=\""+x+"\" class=\"deletebtn\">Fjern</input>\n" +
+                        "            <button type=\"submit\" name=\"orderRow\" value=\""+x+"\" class=\"btn btn-danger\">Fjern</input>\n" +
                         "        </form></td>" +
                         "  </tr>";
 
@@ -170,6 +171,7 @@
                 <th style="text-align: right">Antal</th>
                 <th style="text-align: right">Pris</th>
                 <th style="text-align: right">Total</th>
+                <th></th>
             </tr>
             <%=stringBuilder.toString()%>
             <tr>
@@ -179,6 +181,7 @@
                 <td style="text-align: right"><%=totalCupcakes%> stk.</td>
                 <td></td>
                 <td style="text-align: right"><%=totalPrice%> ,-</td>
+                <td></td>
             </tr>
             <tr>
 

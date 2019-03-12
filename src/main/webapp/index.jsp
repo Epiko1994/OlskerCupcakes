@@ -64,7 +64,7 @@
 
                 } else {
                     loginForm =
-                            "<button onclick=\"document.getElementById('id01').style.display='block'\" style=\"width:auto;\">Login</button>\n" +
+                            "<button onclick=\"document.getElementById('id01').style.display='block'\" style=\"width:auto; border: 1px solid green;\">Login</button>\n" +
                                     "            \n" +
                                     "            <div id=\"id01\" class=\"modal\">\n" +
                                     "                \n" +
@@ -82,7 +82,7 @@
                                     "                        <input type=\"password\" placeholder=\"Enter Password\" name=\"psw\" required>\n" +
                                     "                           <br><br>" +
                                     "                        <button type=\"submit\">Login</button>\n" +
-                                    "                        <button type=\"button\" onclick=\"document.getElementById('id01').style.display='none'\"\n" +
+                                    "                        <button type=\"button\" onclick=\"document.getElementById('id01').style.display='border: 1px solid green;'\"\n" +
                                     "                                class=\"cancelbtn\">Cancel\n" +
                                     "                        </button>\n" +
                                     "                        <!-- Button to open the create user modal -->\n" +
@@ -101,7 +101,7 @@
                                     "                }\n" +
                                     "            }\n" +
                                     "        </script>" +
-                                    "<button onclick=\"document.getElementById('id02').style.display='block'\" style=\"width:auto;\">Ny bruger</button>\n" +
+                                    "<button onclick=\"document.getElementById('id02').style.display='block'\" style=\"width:auto;border: 1px solid green;\">Ny bruger</button>\n" +
                                     "            <!-- The Modal (contains the Sign Up form) -->\n" +
                                     "            <div id=\"id02\" class=\"modal\">\n" +
                                     "                <span onclick=\"document.getElementById('id02').style.display='none'\" class=\"close\" title=\"Close Modal\">times;</span>\n" +
@@ -121,7 +121,7 @@
                                     "                        <input type=\"password\" placeholder=\"Repeat Password\" name=\"psw-repeat\" required>\n" +
                                     "\n" +
                                     "                        <div class=\"clearfix\">\n" +
-                                    "                            <button type=\"button\" onclick=\"document.getElementById('id01').style.display='none'\" class=\"cancelbtn\">Cancel</button>\n" +
+                                    "                            <button type=\"button\" onclick=\"document.getElementById('id01').style.display='border: 1px solid green;'\" class=\"cancelbtn\">Cancel</button>\n" +
                                     "                            <button type=\"submit\" class=\"signup\">Sign Up</button>\n" +
                                     "                        </div>\n" +
                                     "                    </div>\n" +

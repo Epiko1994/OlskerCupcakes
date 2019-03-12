@@ -61,19 +61,27 @@ public class ShopController extends HttpServlet {
         switch (source) {
 
             case "addtocart": {
-                String base = request.getParameter("base");
-                String top = request.getParameter("top");
-                int amount = Integer.parseInt(request.getParameter("amount"));
-                int basePrice = baseList.get(base);
-                int topPrice = topList.get(top);
-                int cupcakePrice = basePrice + topPrice;
+                //if (shopList == null)
 
-                shopList.add(new Cupcake(top, base, cupcakePrice, amount));
 
-                session.setAttribute("basket", shopList);
-                request.getRequestDispatcher("/indexController").forward(request, response);
+                     //else{
 
-                break;
+
+                    String base = request.getParameter("base");
+                    String top = request.getParameter("top");
+                    int amount = Integer.parseInt(request.getParameter("amount"));
+                    int basePrice = baseList.get(base);
+                    int topPrice = topList.get(top);
+                    int cupcakePrice = basePrice + topPrice;
+
+                    shopList.add(new Cupcake(top, base, cupcakePrice, amount));
+
+                    session.setAttribute("basket", shopList);
+                    request.getRequestDispatcher("/indexController").forward(request, response);
+
+                    break;
+                //}
+
             }
 
             case "login": {
