@@ -63,19 +63,25 @@ public class ShopController extends HttpServlet {
         switch (source) {
 
             case "addtocart": {
-                String base = request.getParameter("base");
-                String top = request.getParameter("top");
-                int amount = Integer.parseInt(request.getParameter("amount"));
-                int basePrice = baseList.get(base);
-                int topPrice = topList.get(top);
-                int cupcakePrice = basePrice + topPrice;
+                if (request.getParameter("base") == null || request.getParameter("top") == null || request.getParameter("amount") == null) {
+                    request.getRequestDispatcher("/indexController").forward(request, response);
+                    break;
+                } else {
 
-                shopList.add(new Cupcake(top, base, cupcakePrice, amount));
+                    String base = request.getParameter("base");
+                    String top = request.getParameter("top");
+                    int amount = Integer.parseInt(request.getParameter("amount"));
+                    int basePrice = baseList.get(base);
+                    int topPrice = topList.get(top);
+                    int cupcakePrice = basePrice + topPrice;
 
-                session.setAttribute("basket", shopList);
-                request.getRequestDispatcher("/indexController").forward(request, response);
+                    shopList.add(new Cupcake(top, base, cupcakePrice, amount));
 
-                break;
+                    session.setAttribute("basket", shopList);
+                    request.getRequestDispatcher("/indexController").forward(request, response);
+
+                    break;
+                }
             }
 
             case "login": {
@@ -150,7 +156,7 @@ public class ShopController extends HttpServlet {
                 break;
             }
 
-            case "order":
+            case "order": {
                 OrderMapper orderMapper = new OrderMapper();
                 ArrayList<Cupcake> shopList = (ArrayList<Cupcake>) session.getAttribute("basket");
                 User user = (User) session.getAttribute("userData");
@@ -163,11 +169,21 @@ public class ShopController extends HttpServlet {
                 session.setAttribute("basket", shopList);
                 request.getRequestDispatcher("/indexController").forward(request, response);
                 break;
-
+            }
+            case "deleteOrder": {
+                int deleteNumber = Integer.parseInt(request.getParameter("orderRow"));
+                shopList.remove(deleteNumber);
+                request.setAttribute("basket", shopList);
+                request.getRequestDispatcher("shoppingBasket.jsp").forward(request, response);
+                break;
+            }
             default: {
                 request.getRequestDispatcher("index.jsp").forward(request, response);
                 break;
             }
+
+
+
         }
     }
 }

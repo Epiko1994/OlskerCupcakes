@@ -12,7 +12,7 @@
 <html>
 <head>
     <title>Indkøbskurv</title>
-    <link href="css/cupcake.css" rel="stylesheet" type="text/css">
+
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -27,6 +27,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
+    <link href="css/cupcake.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <div class="container">
@@ -65,7 +66,7 @@
 
                 } else {
                     loginForm =
-                            "<button onclick=\"document.getElementById('id01').style.display='block'\" style=\"width:auto;\">Login</button>\n" +
+                            "<button onclick=\"document.getElementById('id01').style.display='block'\" style=\"width:auto;border: 1px solid green;\">Login</button>\n" +
                                     "            \n" +
                                     "            <div id=\"id01\" class=\"modal\">\n" +
                                     "                \n" +
@@ -123,19 +124,28 @@
     <%
         int totalPrice = 0;
         int totalCupcakes = 0;
+        int x = 0;
+        String listElement;
         StringBuilder stringBuilder;
         if (session.getAttribute("basket") != null) {
             ArrayList<Cupcake> shopList = (ArrayList<Cupcake>) session.getAttribute("basket");
             stringBuilder = new StringBuilder();
             for (Cupcake cupcake : shopList) {
+                listElement = Integer.toString(x);
 
                 String template = "<tr>\n" +
                         "    <td>_base_</td>\n" +
                         "    <td>_topping_</td> \n" +
                         "    <td style=\"text-align: right\">_amount_ stk.</td> \n" +
                         "    <td style=\"text-align: right\">_price_ ,-</td>\n" +
-                        "    <td style=\"text-align: right\">_total_ ,-</td>" +
+                        "    <td style=\"text-align: right\">_total_ ,-</td>\n" +
+                        "    <td style=\"width: 75.8px\"><form style=\"margin-block-end: 0; width: 85px; text-align: right; \"action=\"shopcontroller\" method=\"post\">\n" +
+                        "            <input type=\"hidden\" name=\"source\" value=\"deleteOrder\"/>\n" +
+                        "\n" +
+                        "            <button type=\"submit\" name=\"orderRow\" value=\""+x+"\" class=\"btn btn-danger\">Fjern</input>\n" +
+                        "        </form></td>" +
                         "  </tr>";
+
                 template = template.replace("_base_", cupcake.getBase());
                 template = template.replace("_topping_", cupcake.getTop());
                 template = template.replace("_amount_", Integer.toString(cupcake.getAmount()));
@@ -144,6 +154,8 @@
                 stringBuilder.append(template);
                 totalPrice = totalPrice + cupcake.getPrice() * cupcake.getAmount();
                 totalCupcakes = totalCupcakes + cupcake.getAmount();
+
+                x++;
             }
         } else {
             stringBuilder = new StringBuilder();
@@ -160,6 +172,7 @@
                 <th style="text-align: right">Antal</th>
                 <th style="text-align: right">Pris</th>
                 <th style="text-align: right">Total</th>
+                <th></th>
             </tr>
             <%=stringBuilder.toString()%>
             <tr>
@@ -169,10 +182,16 @@
                 <td style="text-align: right"><%=totalCupcakes%> stk.</td>
                 <td></td>
                 <td style="text-align: right"><%=totalPrice%> ,-</td>
+                <td></td>
+            </tr>
+            <tr>
+
             </tr>
         </table>
         <button type="button" class="btn btn-primary" onclick="window.location.href = 'shopcontroller?source=order';" value="order">Bestil cupcakes</button>
     </div>
+
+
 
 </div>
 </body>
