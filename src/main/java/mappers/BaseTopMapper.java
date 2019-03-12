@@ -85,9 +85,9 @@ public class BaseTopMapper {
         resultSet = statement.executeQuery("SELECT * FROM topping");
 
         while (resultSet.next()) {
-            int id = resultSet.getInt("top_id");
-            String name = resultSet.getString("top_name");
-            int price = resultSet.getInt("top_price");
+            int id = resultSet.getInt("topping_id");
+            String name = resultSet.getString("topping_name");
+            int price = resultSet.getInt("topping_price");
             topHashMap.put(name, new Topping(id, name, price));
         }
         return topHashMap;
