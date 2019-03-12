@@ -42,7 +42,7 @@
     <img src="img/cupcakeBanner.png" alt="Logo" class="img-fluid"/>
 
     <div class="navbar navbar-expand-lg navbar-light">
-        <a class="navbar-brand" href="index.jsp">
+        <a class="navbar-brand" href="customerPage.jsp ">
             <img src="img/cupcake.svg" width="30" height="30" class="d-inline-block align-top" alt="logo">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -158,6 +158,9 @@
             </tr>
             <%=stringBuilder.toString()%>
         </table>
+    </div>
+    <div class="col-sm-3 dropdown_box">
+        <input type="submit" name="selectcupcake" value="Læg i kurv" class="btn btn-success form-control"/>
     </div>
 
 </div>

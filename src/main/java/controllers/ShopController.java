@@ -152,6 +152,15 @@ public class ShopController extends HttpServlet {
                 request.getRequestDispatcher("index.jsp").forward(request, response);
                 break;
             }
+
+            case "deleteOrder": {
+                int deleteNumber = Integer.parseInt(request.getParameter("orderRow"));
+                shopList.remove(deleteNumber);
+                request.setAttribute("basket", shopList);
+                request.getRequestDispatcher("shoppingBasket.jsp").forward(request, response);
+                break;
+            }
+
         }
     }
 }

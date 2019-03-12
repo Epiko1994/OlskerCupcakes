@@ -122,19 +122,28 @@
     <%
         int totalPrice = 0;
         int totalCupcakes = 0;
+        int x = 0;
+        String listElement;
         StringBuilder stringBuilder;
         if (session.getAttribute("basket") != null) {
             ArrayList<Cupcake> shopList = (ArrayList<Cupcake>) session.getAttribute("basket");
             stringBuilder = new StringBuilder();
             for (Cupcake cupcake : shopList) {
+                listElement = Integer.toString(x);
 
                 String template = "<tr>\n" +
                         "    <td>_base_</td>\n" +
                         "    <td>_topping_</td> \n" +
                         "    <td style=\"text-align: right\">_amount_ stk.</td> \n" +
                         "    <td style=\"text-align: right\">_price_ ,-</td>\n" +
-                        "    <td style=\"text-align: right\">_total_ ,-</td>" +
+                        "    <td style=\"text-align: right\">_total_ ,-</td>\n" +
+                        "    <td><form action=\"/shopcontroller\" method=\"post\">\n" +
+                        "            <input type=\"hidden\" name=\"source\" value=\"deleteOrder\"/>\n" +
+                        "\n" +
+                        "            <button type=\"submit\" name=\"orderRow\" value=\""+x+"\" class=\"deletebtn\">Fjern</input>\n" +
+                        "        </form></td>" +
                         "  </tr>";
+
                 template = template.replace("_base_", cupcake.getBase());
                 template = template.replace("_topping_", cupcake.getTop());
                 template = template.replace("_amount_", Integer.toString(cupcake.getAmount()));
@@ -143,6 +152,8 @@
                 stringBuilder.append(template);
                 totalPrice = totalPrice + cupcake.getPrice() * cupcake.getAmount();
                 totalCupcakes = totalCupcakes + cupcake.getAmount();
+
+                x++;
             }
         } else {
             stringBuilder = new StringBuilder();
@@ -169,8 +180,13 @@
                 <td></td>
                 <td style="text-align: right"><%=totalPrice%> ,-</td>
             </tr>
+            <tr>
+
+            </tr>
         </table>
     </div>
+
+
 
 </div>
 </body>

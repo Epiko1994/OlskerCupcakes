@@ -1,3 +1,6 @@
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.Map.Entry" %>
+<%@ page import="java.util.HashMap" %>
 <%@ page import="model.User" %>
 <%@ page import="java.util.HashMap" %>
 <%@ page import="java.util.Map.Entry" %>

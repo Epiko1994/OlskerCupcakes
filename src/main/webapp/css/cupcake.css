@@ -68,6 +68,11 @@ button:hover {
     background-color: #f44336;
 }
 
+button.deletebtn {
+    background-color: #f44336!important;
+    margin: 50%!important;
+}
+
 /* The Modal (background) */
 .modal {
     display: none; /* Hidden by default */
