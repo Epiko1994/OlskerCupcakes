@@ -12,12 +12,51 @@ import java.util.HashMap;
 public class UserMapper {
 
 
+    public static User createUser(String email, String psw) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        User user = null;
+        try {
+            connection = ConnnectionConfiguration.getConnection();
+            preparedStatement = connection.prepareStatement("INSERT INTO Cupcake.user (email, password)" +
+                    "VALUES (?, ?)", Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.setString(1, email);
+            preparedStatement.setString(2, psw);
+            preparedStatement.executeUpdate();
+            resultSet = preparedStatement.getGeneratedKeys();
+            resultSet.next();
+            int userID = resultSet.getInt(1);
+            user = new User(userID, email, 0, false);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (preparedStatement != null) {
+                try {
+                    preparedStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return user;
+    }
+
+    //reads all the users in the database
     public ArrayList<User> customerReader() throws SQLException, ClassNotFoundException {
         ArrayList<User> userList = new ArrayList<>();
-        Connection connection = null;
-        Statement statement = null;
+        Connection connection;
+        Statement statement;
         PreparedStatement preparedStatement;
-        ResultSet resultSet = null;
+        ResultSet resultSet;
 
 
         connection = ConnnectionConfiguration.getConnection();
@@ -60,24 +99,24 @@ public class UserMapper {
         return userList;
     }
 
-    public HashMap<String,User> UserMap(ArrayList<User> userArray){
+    //transfers user arrayList to hashMap
+    //todo why and where is it used?
+    public HashMap<String, User> UserMap(ArrayList<User> userArray) {
 
-        HashMap<String,User> userMap = new HashMap<>();
-
+        HashMap<String, User> userMap = new HashMap<>();
         for (User user : userArray) {
-            userMap.put(user.getEmail(),user);
+            userMap.put(user.getEmail(), user);
         }
-
         return userMap;
     }
 
-    private int total(ArrayList<Cupcake> cupcakes){
+    //returns the sum of all the cupcakes in an orderLine
+    private int total(ArrayList<Cupcake> cupcakes) {
         int sum = 0;
         for (Cupcake cupcake :
                 cupcakes) {
-            sum = sum + (cupcake.getPrice()*cupcake.getAmount());
+            sum = sum + (cupcake.getPrice() * cupcake.getAmount());
         }
-
         return sum;
     }
 }
