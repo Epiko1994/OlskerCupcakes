@@ -177,11 +177,12 @@ public class ShopController extends HttpServlet {
                 request.getRequestDispatcher("shoppingBasket.jsp").forward(request, response);
                 break;
             }
-
             default: {
                 request.getRequestDispatcher("index.jsp").forward(request, response);
                 break;
             }
+
+
 
         }
     }
