@@ -32,11 +32,6 @@
     color: black;
 }
 
-/* Highlights the currently active link */
-.navbar a.active {
-    background-color: #93b0ad;
-    color: white;
-}
 
 /* Full-width input fields */
 input[type=text], input[type=password] {

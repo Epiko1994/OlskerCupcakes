@@ -47,7 +47,7 @@
                     if (user.isAdmin()) {
                         loginForm =
                                 "<ul class=\"navbar-nav mr-auto\">\n" +
-                                        "                <a class=\"active\" href=\"indexController\">Shop</a>\n" +
+                                        "                <a href=\"indexController\">Shop</a>\n" +
                                         "                <a href=\"servlet?destination=customers.jsp\">Kunder</a>\n" +
                                         "                <a href=\"servlet?destination=orders.jsp\">Ordrer</a>\n" +
                                         "            </ul>" +
@@ -61,7 +61,7 @@
                     } else {
                         loginForm =
                                 "<ul class=\"navbar-nav mr-auto\">\n" +
-                                        "                <a class=\"active\" href=\"indexController\">Shop</a>\n" +
+                                        "                <a href=\"indexController\">Shop</a>\n" +
                                         "            </ul>" +
                                         "<div class=\"html-editor-align-right\">\n" +
                                         "                <a href=\"userAccount.jsp\">" + user.getEmail() + "</a>\n" +
@@ -74,7 +74,7 @@
                 } else {
                     loginForm =
                             "<ul class=\"navbar-nav mr-auto\">\n" +
-                                    "                <a class=\"active\" href=\"indexController\">Shop</a>\n" +
+                                    "                <a href=\"indexController\">Shop</a>\n" +
                                     "            </ul>" +
                                     "<button onclick=\"document.getElementById('id01').style.display='block'\" style=\"width:auto; border: 1px solid green;\">Login</button>\n" +
                                     "            \n" +
