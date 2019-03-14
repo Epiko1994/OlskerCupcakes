@@ -52,8 +52,8 @@
                                         "                <a href=\"servlet?destination=orders.jsp\">Ordrer</a>\n" +
                                         "            </ul>" +
                                         "<div class=\"html-editor-align-right\">\n" +
-                                        "                <a href=\"userAccount.jsp\">" + user.getEmail() + "</a>\n" +
-                                        "                <a href=\"userPurchases.jsp\">" + user.getBalance() + ",-</a>\n" +
+                                        "                <a>" + user.getEmail() + "</a>\n" +
+                                        "                <a>" + user.getBalance() + ",-</a>\n" +
                                         "            </div>" +
                                         "<form method=\"post\" action=\"logout.jsp\">\n" +
                                         "                <button class=\"cancelbtn\">Logout</button>\n" +
@@ -64,8 +64,8 @@
                                         "                <a href=\"indexController\">Shop</a>\n" +
                                         "            </ul>" +
                                         "<div class=\"html-editor-align-right\">\n" +
-                                        "                <a href=\"userAccount.jsp\">" + user.getEmail() + "</a>\n" +
-                                        "                <a href=\"userPurchases.jsp\">" + user.getBalance() + ",-</a>\n" +
+                                        "                <a>" + user.getEmail() + "</a>\n" +
+                                        "                <a>" + user.getBalance() + ",-</a>\n" +
                                         "            </div>" +
                                         "<form method=\"post\" action=\"logout.jsp\">\n" +
                                         "                <button class=\"cancelbtn\">Logout</button>\n" +
