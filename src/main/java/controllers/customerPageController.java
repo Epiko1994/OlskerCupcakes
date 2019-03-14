@@ -20,8 +20,10 @@ public class customerPageController extends HttpServlet {
 
     }
 
+    //
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int userid = Integer.parseInt(request.getParameter("userid"));
+
         ArrayList<User> users = new ArrayList<>();
         mappers.UserMapper userMapper = new UserMapper();
         try {

@@ -186,8 +186,7 @@ public class ShopController extends HttpServlet {
                             session.setAttribute("basket", shopList);
                             request.setAttribute("status", "ok");
                             request.setAttribute("message", "Bestilling gennemført");
-                            userMap = userMapper.UserMap(userList);
-                            session.setAttribute("userData", userMap.get(user.getEmail()));
+                            session.removeAttribute("userData");
                             request.getRequestDispatcher("/indexController").forward(request, response);
                             break;
                         } else {
