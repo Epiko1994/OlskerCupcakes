@@ -57,7 +57,7 @@
 
     %>
 
-    <div class="container">
+    <div class="container" style="padding-bottom: 200px">
         <h3>Indkøbskurv</h3>
         <table class='table table-condensed table-striped table-hover'>
             <tr>
