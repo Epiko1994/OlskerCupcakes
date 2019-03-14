@@ -35,11 +35,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav mr-auto">
-                <a class="active" href="indexController">Shop</a>
-                <a href="servlet?destination=customers.jsp">Kunder</a>
-                <a href="servlet?destination=orders.jsp">Ordrer</a>
-            </ul>
+
 
             <!-- Login popup -->
             <%
@@ -47,17 +43,40 @@
                 if (session.getAttribute("login") != null && (boolean) session.getAttribute("login")) {
 
                     User user = (User) session.getAttribute("userData");
-                    loginForm =
-                            "<div class=\"html-editor-align-right\">\n" +
-                                    "                <a href=\"userAccount.jsp\">" + user.getEmail() + "</a>\n" +
-                                    "                <a href=\"userPurchases.jsp\">" + user.getBalance() + ",-</a>\n" +
-                                    "            </div>" +
-                                    "<form method=\"post\" action=\"logout.jsp\">\n" +
-                                    "                <button class=\"cancelbtn\">Logout</button>\n" +
-                                    "            </form>";
+
+                    if (user.isAdmin()) {
+                        loginForm =
+                                "<ul class=\"navbar-nav mr-auto\">\n" +
+                                        "                <a class=\"active\" href=\"indexController\">Shop</a>\n" +
+                                        "                <a href=\"servlet?destination=customers.jsp\">Kunder</a>\n" +
+                                        "                <a href=\"servlet?destination=orders.jsp\">Ordrer</a>\n" +
+                                        "            </ul>" +
+                                        "<div class=\"html-editor-align-right\">\n" +
+                                        "                <a href=\"userAccount.jsp\">" + user.getEmail() + "</a>\n" +
+                                        "                <a href=\"userPurchases.jsp\">" + user.getBalance() + ",-</a>\n" +
+                                        "            </div>" +
+                                        "<form method=\"post\" action=\"logout.jsp\">\n" +
+                                        "                <button class=\"cancelbtn\">Logout</button>\n" +
+                                        "            </form>";
+                    } else {
+                        loginForm =
+                                "<ul class=\"navbar-nav mr-auto\">\n" +
+                                        "                <a class=\"active\" href=\"indexController\">Shop</a>\n" +
+                                        "            </ul>" +
+                                        "<div class=\"html-editor-align-right\">\n" +
+                                        "                <a href=\"userAccount.jsp\">" + user.getEmail() + "</a>\n" +
+                                        "                <a href=\"userPurchases.jsp\">" + user.getBalance() + ",-</a>\n" +
+                                        "            </div>" +
+                                        "<form method=\"post\" action=\"logout.jsp\">\n" +
+                                        "                <button class=\"cancelbtn\">Logout</button>\n" +
+                                        "            </form>";
+                    }
                 } else {
                     loginForm =
-                            "<button onclick=\"document.getElementById('id01').style.display='block'\" style=\"width:auto; border: 1px solid green;\">Login</button>\n" +
+                            "<ul class=\"navbar-nav mr-auto\">\n" +
+                                    "                <a class=\"active\" href=\"indexController\">Shop</a>\n" +
+                                    "            </ul>" +
+                                    "<button onclick=\"document.getElementById('id01').style.display='block'\" style=\"width:auto; border: 1px solid green;\">Login</button>\n" +
                                     "            \n" +
                                     "            <div id=\"id01\" class=\"modal\">\n" +
                                     "                \n" +
