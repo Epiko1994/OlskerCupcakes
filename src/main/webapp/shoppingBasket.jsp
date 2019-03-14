@@ -1,12 +1,6 @@
 <%@ page import="model.Cupcake" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="model.User" %><%--
-  Created by IntelliJ IDEA.
-  User: Emil
-  Date: 05-03-2019
-  Time: 11:55
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="model.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <html>
