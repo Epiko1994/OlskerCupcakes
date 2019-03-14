@@ -118,14 +118,12 @@
         int totalPrice = 0;
         int totalCupcakes = 0;
         int x = 0;
-        String listElement;
         StringBuilder stringBuilder;
         String button = "";
         if (session.getAttribute("basket") != null) {
             ArrayList<Cupcake> shopList = (ArrayList<Cupcake>) session.getAttribute("basket");
             stringBuilder = new StringBuilder();
             for (Cupcake cupcake : shopList) {
-                listElement = Integer.toString(x);
 
                 String template = "<tr>\n" +
                         "    <td>_base_</td>\n" +

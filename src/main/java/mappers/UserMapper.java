@@ -73,7 +73,7 @@ public class UserMapper {
         }
 
         for (User user : userList) {
-            preparedStatement = connection.prepareStatement("SELECT * from orders where user_id = ?;");
+            preparedStatement = connection.prepareStatement("SELECT * from orders WHERE user_id = ? AND active = 1;");
             preparedStatement.setInt(1, user.getUserID());
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {

@@ -120,7 +120,7 @@
                                     "                        <input type=\"password\" placeholder=\"Repeat Password\" name=\"psw-repeat\" required>\n" +
                                     "\n" +
                                     "                        <div class=\"clearfix\">\n" +
-                                    "                            <button type=\"button\" onclick=\"document.getElementById('id01').style.display='border: 1px solid green;'\" class=\"cancelbtn\">Cancel</button>\n" +
+                                    "                            <button type=\"button\" onclick=\"document.getElementById('id02').style.display='border: 1px solid green;'\" class=\"cancelbtn\">Cancel</button>\n" +
                                     "                            <button type=\"submit\" class=\"signup\">Sign Up</button>\n" +
                                     "                        </div>\n" +
                                     "                    </div>\n" +

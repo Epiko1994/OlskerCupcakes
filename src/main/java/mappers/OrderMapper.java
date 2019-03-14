@@ -61,4 +61,20 @@ public class OrderMapper {
         ps.setInt(2, user.getUserID());
         ps.executeUpdate();
     }
+
+    public void removeOrder(int orderId) throws SQLException, ClassNotFoundException {
+
+        Connection connection = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        connection = ConnnectionConfiguration.getConnection();
+        ps = connection.prepareStatement("UPDATE orders " +
+                "SET active = ? " +
+                "WHERE order_id = ?" +
+                ";");
+        ps.setInt(1, 0);
+        ps.setInt(2, orderId);
+        ps.executeUpdate();
+    }
 }

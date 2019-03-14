@@ -39,6 +39,8 @@ public class ShopController extends HttpServlet {
 
         LoginMapper loginMapper = new LoginMapper();
 
+        OrderMapper orderMapper = new OrderMapper();
+
         UserMapper userMapper = new UserMapper();
         ArrayList<User> userList = new ArrayList<>();
 
@@ -173,7 +175,6 @@ public class ShopController extends HttpServlet {
                 if (session.getAttribute("basket") != null) {
                     if (session.getAttribute("login") != null) {
                         if ((boolean) session.getAttribute("login")) {
-                            OrderMapper orderMapper = new OrderMapper();
                             ArrayList<Cupcake> shopList = (ArrayList<Cupcake>) session.getAttribute("basket");
                             User user = (User) session.getAttribute("userData");
                             try {
@@ -216,12 +217,21 @@ public class ShopController extends HttpServlet {
                 request.getRequestDispatcher("shoppingBasket.jsp").forward(request, response);
                 break;
             }
+            case "removeOrder": {
+                int Id = Integer.parseInt(request.getParameter("id"));
+                try {
+                    orderMapper.removeOrder(Id);
+                } catch (SQLException | ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+                response.sendRedirect("servlet?destination=orders.jsp");
+                break;
+            }
+
             default: {
                 request.getRequestDispatcher("index.jsp").forward(request, response);
                 break;
             }
-
-
         }
     }
 }

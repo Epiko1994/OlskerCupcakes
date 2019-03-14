@@ -143,6 +143,11 @@
                         "    <td>_userid_</td> \n" +
                         "    <td>_date_</td> \n" +
                         "    <td style=\"text-align: right\">_totalpris_ ,-</td>\n" +
+                        "    <td style=\"width: 75.8px\"><form style=\"margin-block-end: 0; width: 85px; text-align: right; \"action=\"shopcontroller\" method=\"post\">\n" +
+                        "            <input type=\"hidden\" name=\"source\" value=\"removeOrder\"/>\n" +
+                        "\n" +
+                        "            <button type=\"submit\" name=\"id\" value=\"_orderid_\" class=\"btn btn-danger\">Fjern</input>\n" +
+                        "        </form></td>" +
                         "  </tr>";
                 template = template.replace("_orderid_", Integer.toString(order.getOrderID()));
                 template = template.replace("_userid_", user.getEmail());
@@ -159,6 +164,7 @@
                 <th>Kunde-ID</th>
                 <th>Date</th>
                 <th style="text-align: right">Total</th>
+                <th></th>
             </tr>
             <%=stringBuilder.toString()%>
         </table>

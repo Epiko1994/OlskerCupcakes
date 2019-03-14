@@ -17,14 +17,19 @@ import java.util.ArrayList;
 public class OrderPageController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        DoIt(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        DoIt(request, response);
+    }
+
+    private void DoIt(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int orderid = Integer.parseInt(request.getParameter("orderid"));
 
         ArrayList<User> users = new ArrayList<>();
-        mappers.UserMapper userMapper = new UserMapper();
+        UserMapper userMapper = new UserMapper();
         try {
             users = userMapper.customerReader();
         } catch (SQLException | ClassNotFoundException e) {
