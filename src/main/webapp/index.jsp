@@ -52,6 +52,7 @@
             <%
                 String loginForm;
                 if (session.getAttribute("login") != null && (boolean) session.getAttribute("login")) {
+
                     User user = (User) session.getAttribute("userData");
                     loginForm =
                             "<div class=\"html-editor-align-right\">\n" +
