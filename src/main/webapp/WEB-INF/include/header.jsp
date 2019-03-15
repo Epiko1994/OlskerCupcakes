@@ -40,7 +40,7 @@
             <!-- Login popup -->
             <%
                 String loginForm;
-                if (session.getAttribute("login") != null && (boolean) session.getAttribute("login")) {
+                if (session.getAttribute("userData") != null && (boolean) session.getAttribute("login")) {
 
                     User user = (User) session.getAttribute("userData");
 

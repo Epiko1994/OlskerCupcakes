@@ -36,11 +36,8 @@ public class ShopController extends HttpServlet {
         BaseTopMapper baseTopMapper = new BaseTopMapper();
         HashMap<String, Integer> baseList = new HashMap<>();
         HashMap<String, Integer> topList = new HashMap<>();
-
         LoginMapper loginMapper = new LoginMapper();
-
         OrderMapper orderMapper = new OrderMapper();
-
         UserMapper userMapper = new UserMapper();
         ArrayList<User> userList = new ArrayList<>();
 
@@ -53,9 +50,7 @@ public class ShopController extends HttpServlet {
         }
 
         HashMap<String, User> userMap = userMapper.UserMap(userList);
-
         HttpSession session = request.getSession();
-
         String source = request.getParameter("source");
 
         if (shopList.isEmpty()) {
@@ -186,7 +181,7 @@ public class ShopController extends HttpServlet {
                             session.setAttribute("basket", shopList);
                             request.setAttribute("status", "ok");
                             request.setAttribute("message", "Bestilling gennemført");
-                            session.removeAttribute("userData");
+                            //session.removeAttribute("userData");
                             request.getRequestDispatcher("/indexController").forward(request, response);
                             break;
                         } else {

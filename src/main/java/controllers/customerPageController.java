@@ -32,11 +32,11 @@ public class customerPageController extends HttpServlet {
             e.printStackTrace();
         }
 
-        User user = new User();
+        User user = null;
 
         for (User user1 : users) {
             if (user1.getUserID() == userid) {
-                user = user1;
+                 user = user1;
             }
         }
         request.setAttribute("user", user);

@@ -18,9 +18,9 @@ public class User {
         this.orders = new ArrayList<>();
     }
 
-    public User() {
+    //public User() {
 
-    }
+    //}
 
 
     public int getUserID() {
