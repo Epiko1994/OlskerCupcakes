@@ -20,7 +20,7 @@ public class UserMapper {
         User user = null;
         try {
             connection = ConnnectionConfiguration.getConnection();
-            preparedStatement = connection.prepareStatement("INSERT INTO Cupcake.user (email, password)" +
+            preparedStatement = connection.prepareStatement("INSERT INTO Cupcakes.user (email, password)" +
                     "VALUES (?, ?)", Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, email);
             preparedStatement.setString(2, psw);
